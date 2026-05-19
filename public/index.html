@@ -108,7 +108,7 @@
 
         /* ── NAV ── */
         .nav-blur {
-            background: rgba(13, 17, 23, 0.729);
+            background: rgba(13, 17, 23, 0.82);
             border-bottom: 1px solid var(--border);
             backdrop-filter: blur(14px);
         }
@@ -134,7 +134,7 @@
 
         /* ── TECH CARD ── */
         .tech-card {
-            background: #0f1117;
+            background: #1a1a1a;
             border: 1px solid var(--border);
             box-shadow: 4px 4px 0px rgba(0,0,0,0.6);
             transition: all 0.2s ease;
@@ -158,7 +158,7 @@
 
         /* ── STAT CARD ── */
         .stat-card {
-            background: #0f1117;
+            background: #1d1d1d;
             border: 1px solid var(--border);
             border-radius: 14px;
             box-shadow: 0 18px 45px rgba(0,0,0,0.5);
@@ -757,58 +757,166 @@
                         <div class="mt-6 border border-dashed border-[#30363d] relative group/archive hover:border-[#58a6ff] transition-colors duration-300">
                             <div class="absolute -top-[9px] left-4 px-2 bg-[#0f1117] font-mono text-[9px] tracking-[0.2em] text-[#6b6b78] uppercase">// DESIGN_OUTPUT_ARCHIVE</div>
 
-                            <!-- 3 poster thumbnails + +20 tile -->
-                            <div class="grid grid-cols-4 gap-1.5 p-4 pb-3">
-                                <a href="YOUR_GDRIVE_LINK" target="_blank" rel="noopener" class="relative overflow-hidden border border-[#27272a] hover:border-[#58a6ff] transition-colors duration-200 group/thumb aspect-[3/4]" title="Poster 1">
-                                    <div class="w-full h-full bg-[#1a1a1d] flex items-center justify-center">
-                                        <i class="fas fa-image text-[#30363d] text-lg group-hover/thumb:text-[#484f58] transition-colors"></i>
-                                    </div>
-                                    <div class="absolute inset-0 bg-[#58a6ff]/0 group-hover/thumb:bg-[#58a6ff]/5 transition-all duration-200"></div>
-                                </a>
-                                <a href="YOUR_GDRIVE_LINK" target="_blank" rel="noopener" class="relative overflow-hidden border border-[#27272a] hover:border-[#58a6ff] transition-colors duration-200 group/thumb aspect-[3/4]" title="Poster 2">
-                                    <div class="w-full h-full bg-[#1a1a1d] flex items-center justify-center">
-                                        <i class="fas fa-image text-[#30363d] text-lg group-hover/thumb:text-[#484f58] transition-colors"></i>
-                                    </div>
-                                    <div class="absolute inset-0 bg-[#58a6ff]/0 group-hover/thumb:bg-[#58a6ff]/5 transition-all duration-200"></div>
-                                </a>
-                                <a href="YOUR_GDRIVE_LINK" target="_blank" rel="noopener" class="relative overflow-hidden border border-[#27272a] hover:border-[#58a6ff] transition-colors duration-200 group/thumb aspect-[3/4]" title="Poster 3">
-                                    <div class="w-full h-full bg-[#1a1a1d] flex items-center justify-center">
-                                        <i class="fas fa-image text-[#30363d] text-lg group-hover/thumb:text-[#484f58] transition-colors"></i>
-                                    </div>
-                                    <div class="absolute inset-0 bg-[#58a6ff]/0 group-hover/thumb:bg-[#58a6ff]/5 transition-all duration-200"></div>
-                                </a>
-                                <!-- +20 more tile -->
-                                <a href="YOUR_GDRIVE_LINK" target="_blank" rel="noopener" class="relative overflow-hidden border border-[#27272a] hover:border-[#58a6ff] transition-colors duration-200 group/thumb aspect-[3/4] bg-[#1a1a1d] flex items-center justify-center" title="View all posters">
-                                    <div class="text-center">
-                                        <div class="font-mono text-sm font-bold text-[#484f58] group-hover/thumb:text-[#58a6ff] transition-colors">+20</div>
-                                        <div class="font-mono text-[8px] text-[#30363d] group-hover/thumb:text-[#484f58] transition-colors mt-0.5">MORE</div>
-                                    </div>
-                                    <div class="absolute inset-0 bg-[#58a6ff]/0 group-hover/thumb:bg-[#58a6ff]/5 transition-all duration-200"></div>
-                                </a>
-                            </div>
-                            <div class="px-4 pb-1 font-mono text-[9px] text-[#484f58] tracking-wider">// Replace placeholders with: &lt;img src="poster.jpg" class="w-full h-full object-cover"&gt;</div>
+<!-- POSTER GALLERY -->
+<div class="grid grid-cols-4 gap-2 p-4 pb-3">
 
-                            <!-- Archive CTA row -->
-                            <a href="YOUR_GDRIVE_LINK" target="_blank" rel="noopener"
-                               class="flex items-center gap-4 px-4 py-3 border-t border-[#1a1a1d] text-[#b4b4bc] hover:text-[#e2e2e6] hover:bg-[#111113] transition-all duration-200 group/cta">
-                                <div class="flex-shrink-0 w-8 h-8 border border-[#30363d] group-hover/cta:border-[#58a6ff] flex items-center justify-center transition-colors duration-200">
-                                    <i class="fas fa-images text-[#484f58] group-hover/cta:text-[#58a6ff] text-xs transition-colors duration-200"></i>
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <div class="font-mono text-sm font-bold text-[#e2e2e6] group-hover/cta:text-white tracking-wide transition-colors">View_Full_Poster_Archive</div>
-                                    <div class="font-mono text-[10px] text-[#6b6b78] mt-0.5 tracking-wider">25+ creatives &mdash; Riviera &nbsp;&bull;&nbsp; Gravitas &nbsp;&bull;&nbsp; ISOI</div>
-                                </div>
-                                <div class="flex-shrink-0 font-mono text-xs text-[#484f58] group-hover/cta:text-[#58a6ff] group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 transition-all duration-200">↗</div>
-                            </a>
+    <!-- Poster 1 -->
+    <a 
+       target="_blank"
+       rel="noopener"
+       class="relative overflow-hidden border border-[#27272a]
+              hover:border-[#58a6ff]
+              transition-colors duration-200
+              group/thumb rounded-md">
+
+        <img src="assets/images/ISOI story (2).png"
+             alt="Poster 1"
+             class="w-full h-auto object-cover
+                    group-hover/thumb:scale-105
+                    transition-transform duration-300">
+
+        <div class="absolute inset-0
+                    bg-[#58a6ff]/0
+                    group-hover/thumb:bg-[#58a6ff]/5
+                    transition-all duration-200">
+        </div>
+    </a>
+
+    <!-- Poster 2 -->
+    <a 
+       target="_blank"
+       rel="noopener"
+       class="relative overflow-hidden border border-[#27272a]
+              hover:border-[#58a6ff]
+              transition-colors duration-200
+              group/thumb rounded-md">
+
+        <img src="assets/images/ISOI story (1).png"
+             alt="Poster 2"
+             class="w-full h-auto object-cover
+                    group-hover/thumb:scale-105
+                    transition-transform duration-300">
+
+        <div class="absolute inset-0
+                    bg-[#58a6ff]/0
+                    group-hover/thumb:bg-[#58a6ff]/5
+                    transition-all duration-200">
+        </div>
+    </a>
+
+    <!-- Poster 3 -->
+    <a 
+       target="_blank"
+       rel="noopener"
+       class="relative overflow-hidden border border-[#27272a]
+              hover:border-[#58a6ff]
+              transition-colors duration-200
+              group/thumb rounded-md">
+
+        <img src="assets/images/isoi_3.png"
+             alt="Poster 3"
+             class="w-full h-auto object-cover
+                    group-hover/thumb:scale-105
+                    transition-transform duration-300">
+
+        <div class="absolute inset-0
+                    bg-[#58a6ff]/0
+                    group-hover/thumb:bg-[#58a6ff]/5
+                    transition-all duration-200">
+        </div>
+    </a>
+
+    <!-- +20 MORE TILE WITH IMAGE OPTION -->
+<a
+   target="_blank"
+   rel="noopener"
+   class="relative overflow-hidden border border-[#27272a]
+          hover:border-[#58a6ff]
+          transition-colors duration-200
+          group/thumb rounded-md aspect-[9/16]"
+   title="Poster 4">
+
+    <!-- IMAGE -->
+    <img src="assets/images/PIC.png"
+         alt="Poster 4"
+         class="w-full h-full object-cover
+                group-hover/thumb:scale-105
+                transition-transform duration-300">
+
+    <!-- DARK OVERLAY -->
+    <div class="absolute inset-0
+                bg-black/20
+                group-hover/thumb:bg-black/10
+                transition-all duration-300">
+    </div>
+</a>
+
+</div>
+
+<!-- Helper Text -->
+<div class="px-4 pb-1 font-mono text-[9px] text-[#484f58] tracking-wider">
+</div>
+
+<!-- Archive CTA Row -->
+<a href="YOUR_GDRIVE_LINK"
+   target="_blank"
+   rel="noopener"
+   class="flex items-center gap-4 px-4 py-3
+          border-t border-[#1a1a1d]
+          text-[#b4b4bc]
+          hover:text-[#e2e2e6]
+          hover:bg-[#111113]
+          transition-all duration-200 group/cta">
+
+    <!-- Icon -->
+    <div class="flex-shrink-0 w-8 h-8
+                border border-[#30363d]
+                group-hover/cta:border-[#58a6ff]
+                flex items-center justify-center
+                transition-colors duration-200">
+
+        <i class="fas fa-images text-[#484f58]
+                  group-hover/cta:text-[#58a6ff]
+                  text-xs transition-colors duration-200">
+        </i>
+    </div>
+
+    <!-- Text -->
+    <div class="flex-1 min-w-0">
+
+        <div class="font-mono text-sm font-bold
+                    text-[#e2e2e6]
+                    group-hover/cta:text-white
+                    tracking-wide transition-colors">
+
+            View_Full_Poster_Archive
+        </div>
+
+        <div class="font-mono text-[10px]
+                    text-[#6b6b78]
+                    mt-0.5 tracking-wider">
+
+            25+ creatives — Riviera • Gravitas • ISOI
+        </div>
+    </div>
+
+    <!-- Arrow -->
+    <div class="flex-shrink-0 font-mono text-xs
+                text-[#484f58]
+                group-hover/cta:text-[#58a6ff]
+                group-hover/cta:translate-x-0.5
+                group-hover/cta:-translate-y-0.5
+                transition-all duration-200">
+
+        ↗
+    </div>
+
+</a>
                         </div>
-
                     </div>
                 </div>
-
             </div>
-        </div>
-    </section>
-
+        </div>    </section> 
     <!-- ═══════════════════════════════════════════
          PROJECTS
     ═══════════════════════════════════════════ -->
@@ -1321,23 +1429,23 @@
                     <div class="p-6 space-y-4">
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[9px] tracking-widest text-[#484f58] mb-1.5 uppercase">Name</label>
+                                <label class="block text-[9px] tracking-widest text-[#D3D3D3] mb-1.5 uppercase">Name</label>
                                 <input id="cf-name" type="text" placeholder="Your name"
                                     class="w-full bg-[#0d1117] border border-[#21262d] focus:border-[#58a6ff] outline-none text-[#e2e2e6] font-mono text-xs px-3 py-2.5 transition-colors placeholder-[#2d333b]">
                             </div>
                             <div>
-                                <label class="block text-[9px] tracking-widest text-[#484f58] mb-1.5 uppercase">Email</label>
+                                <label class="block text-[9px] tracking-widest text-[#D3D3D3] mb-1.5 uppercase">Email</label>
                                 <input id="cf-email" type="email" placeholder="your@email.com"
                                     class="w-full bg-[#0d1117] border border-[#21262d] focus:border-[#58a6ff] outline-none text-[#e2e2e6] font-mono text-xs px-3 py-2.5 transition-colors placeholder-[#2d333b]">
                             </div>
                         </div>
                         <div>
-                            <label class="block text-[9px] tracking-widest text-[#484f58] mb-1.5 uppercase">Subject</label>
+                            <label class="block text-[9px] tracking-widest text-[#D3D3D3] mb-1.5 uppercase">Subject</label>
                             <input id="cf-subject" type="text" placeholder="Internship / MS referral / Collab..."
                                 class="w-full bg-[#0d1117] border border-[#21262d] focus:border-[#58a6ff] outline-none text-[#e2e2e6] font-mono text-xs px-3 py-2.5 transition-colors placeholder-[#2d333b]">
                         </div>
                         <div>
-                            <label class="block text-[9px] tracking-widest text-[#484f58] mb-1.5 uppercase">Message</label>
+                            <label class="block text-[9px] tracking-widest text-[#D3D3D3] mb-1.5 uppercase">Message</label>
                             <textarea id="cf-message" rows="4" placeholder="Describe your request..."
                                 class="w-full bg-[#0d1117] border border-[#21262d] focus:border-[#58a6ff] outline-none text-[#e2e2e6] font-mono text-xs px-3 py-2.5 transition-colors placeholder-[#2d333b] resize-none"></textarea>
                         </div>
@@ -1356,7 +1464,7 @@
 
                 <!-- Contact info -->
                 <div class="font-mono space-y-3 text-sm">
-                    <p class="text-[9px] tracking-[0.2em] text-[#484f58] uppercase mb-4">// Direct_Channel</p>
+                    <p class="text-[9px] tracking-[0.2em] text-[#D3D3D3] uppercase mb-4">// Direct_Channel</p>
                     <a href="mailto:subhamsaha2234@gmail.com" class="flex items-center footer-link transition group p-2 hover:border-[#30363d] hover:text-[#b4b4bc]">
                         <i class="fas fa-envelope w-6 text-center mr-3 text-[#b4b4bc]"></i> subhamsaha2234@gmail.com
                     </a>
