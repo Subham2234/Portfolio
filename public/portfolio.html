@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subham Saha | Electrical Engineer — Embedded & EV Systems</title>
+    <meta name="description" content="Subham Saha — B.Tech EEE at VIT Vellore. 600V BMS, Formula Student EV, Schneider HMI intern. Embedded systems and safety-critical hardware.">
+    <meta name="author" content="Subham Saha">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Subham Saha | Portfolio">
+    <meta property="og:description" content="600V BMS · CAN ECU · Schneider HMI — available for internships 2026.">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M25 25 L50 75 L75 25' stroke='%23d1d5db' stroke-width='18' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='50' cy='75' r='5' fill='%23161616'/%3E%3C/svg%3E" type="image/svg+xml">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        cad: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: '#e6edf3',
+                        primary_red: '#f85149',
+                        primary_dark: '#da3633',
+                        kicad_grid: '#30363d',
+                        kicad_bg: '#0d1117',
+                        accent: '#58a6ff',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Subham Saha","email":"subhamsaha2234@gmail.com","url":"https://github.com/Woleah","sameAs":["https://github.com/Woleah","https://www.linkedin.com/in/subham-saha2234"],"alumniOf":{"@type":"CollegeOrUniversity","name":"VIT Vellore"}}</script>
+
+    <style>
+        /* ════════════════════════════════════════
+           DESIGN TOKENS — VS Code / Claude dark
+           ════════════════════════════════════════
+           --bg-base      : deepest background (#0d1117  GitHub-dark)
+           --bg-surface   : card / panel surface (#161b22)
+           --bg-elevated  : nav / overlay       (#1c2128)
+           --bg-hover     : interactive hover   (#21262d)
+           --border       : default border      (#30363d)
+           --border-muted : subtle dividers      (#21262d)
+           --border-active: focused / hover edge (#58a6ff  — VS Code blue)
+           --text-primary : headings, strong     (#e6edf3)
+           --text-body    : body copy            (#c9d1d9)
+           --text-muted   : labels, meta         (#8b949e)
+           --text-faint   : coordinates, markers (#484f58)
+           --accent       : VS Code / Claude blue (#58a6ff)
+           --accent-dim   : muted accent bg      (rgba(88,166,255,0.08))
+           --green        : success / live       (#3fb950)
+           --green-bg     : badge bg             (rgba(46,160,67,0.15))
+           --green-border : badge border         (#238636)
+           --red-warn     : high-voltage warn    (#f85149)
+           --amber        : system / terminal    (#d29922)
+        ════════════════════════════════════════ */
+
+        :root {
+            /* ── Surfaces (Claude dark warmth + GitHub depth) ── */
+            --bg-base:      #0a0a0a;   /* Claude --background dark */
+            --bg-surface:   #111113;   /* card level — slightly warmer than pure #0a */
+            --bg-elevated:  #18181b;   /* Claude --muted dark, nav/overlay */
+            --bg-hover:     #27272a;   /* Claude --input dark */
+            --border:       #27272a;   /* Claude --border dark */
+            --border-muted: #1a1a1d;
+            --border-active:#58a6ff;   /* VS Code selection blue — accent pop */
+
+            /* ── Text hierarchy ── */
+            --text-primary: #ffffff;   /* pure white for headings */
+            --text-body:    #e2e2e6;   /* bright body copy — clearly readable */
+            --text-muted:   #b4b4bc;   /* labels, meta — noticeably lighter */
+            --text-faint:   #6b6b78;   /* coordinates, faint decorative markers */
+
+            /* ── Accent — VS Code / Claude sidebar blue ── */
+            --accent:       #58a6ff;
+            --accent-dim:   rgba(88,166,255,0.08);
+
+            /* ── Semantic colours ── */
+            --green:        #3fb950;
+            --green-bg:     rgba(63,185,80,0.12);
+            --green-border: #238636;
+            --red-warn:     #f85149;
+            --amber:        #e3b341;
+        }
+
+        /* ── BASE ── */
+        body { background-color: var(--bg-base); color: var(--text-body); }
+        section[id], footer[id] { scroll-margin-top: 5rem; }
+
+        /* ── GRID BACKGROUND ── */
+        .kicad-bg {
+            background-color: var(--bg-base);
+            background-image: radial-gradient(#1c1c20 1.5px, transparent 1.5px);
+            background-size: 20px 20px;
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+        }
+
+        /* ── NAV ── */
+        .nav-blur {
+            background: rgba(13, 17, 23, 0.82);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(14px);
+        }
+        .nav-link { color: var(--text-muted); }
+        .nav-link:hover { color: var(--text-primary); }
+        .nav-link.active {
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--accent);
+            background-color: var(--accent-dim);
+        }
+        .nav-link[href="#contact"].active {
+            background-color: var(--bg-hover); color: var(--text-primary);
+            border-color: var(--border); border-bottom: 1px solid var(--border);
+        }
+        #mobile-menu {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border);
+        }
+        #mobile-menu.open { max-height: 24rem; }
+        #mobile-menu a { border-bottom: 1px solid var(--border-muted); color: var(--text-muted); }
+
+        /* ── TECH CARD ── */
+        .tech-card {
+            background: #0f1117;
+            border: 1px solid var(--border);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.6);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .tech-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px rgba(88,166,255,0.08);
+            border-color: var(--border-active);
+        }
+        .tech-card:hover h3 { color: var(--text-primary); }
+
+        /* ── TECH-CARD-LITE ── */
+        .tech-card-lite {
+            background: #0f1117;
+            border: 1px solid var(--border);
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.4);
+            transition: all 0.2s;
+        }
+        .tech-card-lite:hover { border-color: var(--border-active); transform: translateY(-2px); }
+
+        /* ── STAT CARD ── */
+        .stat-card {
+            background: #0f1117;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: 0 18px 45px rgba(0,0,0,0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+            position: relative;
+        }
+        .stat-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 24px rgba(88,166,255,0.1);
+            transform: translateY(-4px);
+        }
+        .stat-card::before, .stat-card::after {
+            content: ''; position: absolute;
+            background: var(--border); transition: background 0.3s;
+        }
+        .stat-card::before { width: 10px; height: 4px; top: -4px; left: 50%; transform: translateX(-50%); }
+        .stat-card::after  { width: 10px; height: 4px; bottom: -4px; left: 50%; transform: translateX(-50%); }
+        .stat-card:hover::before, .stat-card:hover::after { background: var(--accent); }
+
+        /* ── LED ── */
+        .status-led {
+            width: 8px; height: 8px;
+            background-color: var(--red-warn);
+            border-radius: 50%; display: inline-block;
+            transition: background-color 0.3s;
+            box-shadow: inset 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .stat-card:hover .status-led {
+            background-color: var(--green);
+            box-shadow: 0 0 6px var(--green);
+        }
+
+        /* ── SKILL PILL ── */
+        .skill-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+        .skill-pill:hover {
+            background-color: var(--accent-dim);
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 2px 2px 0px rgba(88,166,255,0.06);
+        }
+
+        /* ── PROJECT FILTER TAGS ── */
+        .project-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem; cursor: pointer;
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            background: transparent;
+            color: var(--text-muted);
+            transition: all 0.15s;
+        }
+        .project-tag.active, .project-tag:hover {
+            background: var(--accent-dim);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* ── PROMPT CHIPS ── */
+        .prompt-chip {
+            font-size: 0.65rem; padding: 4px 8px;
+            border: 1px solid var(--border); color: var(--text-muted);
+            cursor: pointer; background: transparent;
+            transition: all 0.15s;
+        }
+        .prompt-chip:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ── CIRCUIT NODE ── */
+        .circuit-node {
+            width: 14px; height: 14px;
+            background-color: var(--bg-base);
+            border: 3px solid var(--green);
+            border-radius: 50%; z-index: 20;
+        }
+
+        /* ── TITLE BLOCK TABLE ── */
+        .title-block { border: 2px solid var(--border); }
+        .title-block td { border: 1px solid var(--border); padding: 4px 8px; background: transparent; color: var(--text-muted); }
+        .title-block td.bg-slate-100 { background: transparent !important; color: var(--text-faint); }
+        .title-block td.bg-slate-50  { background: transparent !important; }
+
+        /* ── AI TERMINAL ── */
+        .ai-fab {
+            position: fixed; bottom: 2.25rem; right: 1.25rem; z-index: 60;
+            font-family: 'JetBrains Mono', monospace;
+            border-radius: 999px;
+            box-shadow: 0 14px 35px rgba(0,0,0,0.6);
+            transition: all 0.2s;
+        }
+        .ai-fab:active { transform: translateY(1px); }
+        .ai-terminal {
+            position: fixed; bottom: 5.5rem; right: 1.25rem;
+            width: min(380px, calc(100vw - 2.5rem)); height: min(450px, 70vh);
+            background-color: #0d1117;
+            border: 1px solid #30363d; border-radius: 4px;
+            z-index: 60; display: flex; flex-direction: column;
+            font-family: 'JetBrains Mono', monospace;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+            opacity: 0; pointer-events: none; transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        .ai-terminal.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+        .terminal-header {
+            background-color: #161b22; padding: 8px 12px; color: #58a6ff;
+            font-size: 0.75rem; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .terminal-body { flex-grow: 1; padding: 12px; overflow-y: auto; color: var(--text-muted); font-size: 0.8rem; background: #0d1117; }
+        .terminal-input-area { border-top: 1px solid var(--border); padding: 8px; background-color: #0d1117; }
+        .terminal-input {
+            width: 100%; background: transparent; border: none; color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; outline: none;
+        }
+        .msg-system { color: #e3b341; margin-bottom: 8px; }          /* amber  — system boot lines */
+        .msg-user   { color: #58a6ff; margin-bottom: 8px; text-align: right; } /* blue   — user input */
+        .msg-ai     { color: #e2e2e6; margin-bottom: 12px; }         /* bright white — AI response */
+        .msg-typing { color: #8b949e; font-style: italic; margin-bottom: 8px; } /* grey  — typing indicator */
+        .project-module.hidden-by-filter { display: none !important; }
+
+        /* ── PORTFOLIO IMAGE ── */
+        .portfolio-img { transition: transform 0.5s ease; }
+        .tech-card:hover .portfolio-img { transform: scale(1.03); }
+
+        /* ── SECTION HEADINGS ── */
+        .section-heading-border { border-bottom: 1px solid var(--border); }
+
+        /* ── HERO BOX ── */
+        .hero-box {
+            background: #0f1117;
+            border: 1px solid var(--border);
+            box-shadow: 8px 8px 0px 0px rgba(0,0,0,0.9);
+        }
+
+        /* ── STATS PANEL ── */
+        .stats-panel-bg {
+            background: transparent;
+            border-top: 1px solid var(--border-muted);
+            border-bottom: 1px solid var(--border-muted);
+            backdrop-filter: blur(12px);
+        }
+
+        /* ── EXPERIENCE TIMELINE ── */
+        .timeline-border { border-left: 2px dashed var(--border); }
+        .timeline-connector { background: var(--border); }
+
+        /* ── FOOTER ── */
+        .footer-bg {
+            background: #0f1117;
+            border-top: 1px solid var(--border);
+        }
+        .footer-link {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+        .footer-link:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ── FOCUS ── */
+        .nav-link:focus-visible, .ai-fab:focus-visible,
+        button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+        /* ── GREEN BADGE ── */
+        .green-badge {
+            background: var(--green-bg);
+            border: 1px solid var(--green-border);
+            color: var(--green);
+        }
+
+        /* ── BLUE HIGHLIGHT BAND ── */
+        .blue-band {
+            background: var(--accent-dim);
+            border-left: 2px solid var(--accent);
+            color: var(--text-body);
+        }
+
+        /* ── CERT ICON BOX ── */
+        .cert-icon-box {
+            background: transparent;
+            border: 1px solid var(--border);
+        }
+
+        /* ── PROGRESS BAR ── */
+        .progress-track { background: var(--bg-elevated); }
+
+        @media print {
+            .kicad-bg { display: none; }
+            .tech-card { box-shadow: none; border: 1px solid #333; page-break-inside: avoid; }
+            .ai-fab, .ai-terminal, .status-bar { display: none !important; }
+        }
+    </style>
+
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body class="font-sans antialiased selection:bg-[#21262d] selection:text-[#e6edf3] pb-8">
+
+    <a href="#about" class="sr-only focus:not-sr-only focus:absolute focus:top-20 focus:left-4 focus:z-[100] focus:bg-[#1c2128] focus:px-4 focus:py-2 focus:border-2 focus:border-[#30363d] focus:font-mono focus:text-xs focus:text-white">Skip to content</a>
+
+    <!-- KiCad Dark Grid Background -->
+    <div class="kicad-bg"></div>
+
+    <!-- Layout Corner Markers -->
+    <div class="fixed top-4 left-4 font-cad text-[10px] text-[#6b6b78] select-none pointer-events-none">+ X:000 Y:000</div>
+    <div class="fixed bottom-4 left-4 font-cad text-[10px] text-[#6b6b78] select-none pointer-events-none">+ REF_MARKER</div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 nav-blur">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 font-mono font-bold text-xl text-primary tracking-tighter border-2 border-[#30363d] px-2 py-1">
+                    SS_PORTFOLIO.sch
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8 font-mono text-xs">
+                        <a href="#about"          class="nav-link transition px-3 py-4 uppercase tracking-wide border-b-2 border-transparent">.About</a>
+                        <a href="#experience"     class="nav-link transition px-3 py-4 uppercase tracking-wide border-b-2 border-transparent">.Experience</a>
+                        <a href="#projects"       class="nav-link transition px-3 py-4 uppercase tracking-wide border-b-2 border-transparent">.Projects</a>
+                        <a href="#skills"         class="nav-link transition px-3 py-4 uppercase tracking-wide border-b-2 border-transparent">.Skills</a>
+                        <a href="#certifications" class="nav-link transition px-3 py-4 uppercase tracking-wide border-b-2 border-transparent">.Credentials</a>
+                        <a href="#contact"        class="nav-link border border-[#30363d] text-[#e2e2e6] hover:bg-[#21262d] hover:text-white px-4 py-2 text-xs font-bold transition uppercase">.Execute_Contact</a>
+                    </div>
+                </div>
+                <button id="mobile-menu-btn" type="button" class="md:hidden font-mono text-xs border-2 border-[#30363d] px-2 py-1 text-[#e2e2e6]" aria-expanded="false" aria-controls="mobile-menu">MENU</button>
+            </div>
+            <div id="mobile-menu" class="md:hidden font-mono text-xs">
+                <a href="#about"          class="nav-link block px-4 py-3">.About</a>
+                <a href="#experience"     class="nav-link block px-4 py-3">.Experience</a>
+                <a href="#projects"       class="nav-link block px-4 py-3">.Projects</a>
+                <a href="#skills"         class="nav-link block px-4 py-3">.Skills</a>
+                <a href="#certifications" class="nav-link block px-4 py-3">.Credentials</a>
+                <a href="#contact"        class="nav-link border border-[#30363d] text-[#e2e2e6] hover:bg-[#21262d] hover:text-white px-4 py-2 text-xs font-bold transition uppercase block">.Execute_Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════
+         HERO
+    ═══════════════════════════════════════════ -->
+    <section id="about" class="relative pt-32 pb-20 lg:pt-40 lg:pb-24 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <div class="hero-box relative p-8 md:p-12 text-left text-primary mt-6">
+
+                <div class="absolute top-0 right-0 border-b border-l border-[#30363d] px-4 py-1.5 font-mono text-[10px] tracking-widest text-[#6b6b78] uppercase">
+                    DIAGRAM_SHEET: 1 OF 1
+                </div>
+
+                <!-- Available badge -->
+                <div class="inline-flex items-center gap-2 mb-5 px-3 py-1.5 green-badge font-mono text-[11px] font-bold tracking-wider uppercase">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    AVAILABLE FOR INTERNSHIPS — 2026
+                </div>
+
+                <div class="inline-flex items-center mb-6 px-2.5 py-1 border border-[#30363d] text-[#b4b4bc] font-mono text-[11px] font-bold tracking-wider uppercase ml-3">
+                    <i class="fas fa-bolt mr-2 text-[10px]"></i> SYSTEM_CORE: ACTIVE
+                </div>
+
+                <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-2 text-primary font-sans">
+                    Subham <span class="text-[#e2e2e6] font-semibold">Saha</span>
+                </h1>
+
+                <div class="font-mono text-[11px] uppercase tracking-[0.2em] text-[#6b6b78] font-medium mb-10">
+                    // EMBEDDED SYSTEMS &bull; EV POWERTRAINS &bull; AUTONOMOUS MOBILITY
+                </div>
+
+                <div class="border-l border-[#30363d] pl-6 my-8 max-w-4xl">
+                    <p class="text-base text-[#e2e2e6] font-mono font-normal leading-relaxed tracking-wide">
+                        Electrical & Electronics Engineer with hands-on experience in high-voltage EV systems, embedded firmware, and AI-driven modeling focused on building reliable, high-performance solutions for next-generation mobility.
+                    </p>
+                </div>
+
+                <div class="mt-12 flex flex-wrap items-center gap-5">
+                    <a href="#projects" class="bg-[#e6edf3] text-[#0d1117] px-6 py-3.5 font-mono text-xs font-bold hover:bg-white transition flex items-center tracking-wider">
+                        <i class="fas fa-folder mr-3 text-[#6b6b78]"></i> Read_Project_Logs
+                    </a>
+                    <a href="assets/docs/electronics_resume.pdf" target="_blank" class="bg-transparent text-primary border border-[#30363d] px-6 py-3.5 font-mono text-xs font-bold hover:bg-[#21262d] hover:text-[#e6edf3] hover:border-[#30363d] transition flex items-center tracking-wider">
+                        <i class="fas fa-file-pdf mr-3 text-[#b4b4bc]"></i> Pull_Datasheet (CV)
+                    </a>
+                    <div class="flex items-center space-x-6 text-xl text-[#6b6b78] sm:ml-4">
+                        <a href="https://github.com/Woleah"                    class="hover:text-[#b4b4bc] transition"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/subham-saha2234" target="_blank" rel="noopener" class="hover:text-[#b4b4bc] transition" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="mailto:subhamsaha2234@gmail.com"               class="hover:text-[#b4b4bc] transition"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SYSTEM DIAGNOSTICS PANEL -->
+    <div id="stats-panel" class="stats-panel-bg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <h3 class="font-mono text-xs text-[#6b6b78] mb-6 text-center uppercase tracking-widest">// SYSTEM_DIAGNOSTICS</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+                <!-- Stat Card 1 -->
+                <div class="stat-card p-4 flex flex-col items-center group cursor-default">
+                    <div class="w-full flex justify-between items-center mb-2">
+                        <span class="font-mono text-[10px] text-[#6b6b78]">REG_01</span>
+                        <div class="status-led"></div>
+                    </div>
+                    <div class="text-4xl font-bold text-primary font-mono tracking-tighter flex items-baseline">
+                        <span class="counter" data-target="8.67">0.00</span>
+                    </div>
+                    <div class="text-xs font-bold text-[#b4b4bc] mt-1 uppercase tracking-wider font-mono">CGPA (VIT)</div>
+                    <div class="w-full h-1 progress-track mt-3 overflow-hidden rounded-full">
+                        <div class="h-full bg-[#58a6ff] w-[86.7%]"></div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 2 -->
+                <div class="stat-card p-4 flex flex-col items-center group cursor-default">
+                    <div class="w-full flex justify-between items-center mb-2">
+                        <span class="font-mono text-[10px] text-[#6b6b78]">REG_02</span>
+                        <div class="status-led"></div>
+                    </div>
+                    <div class="text-4xl font-bold text-primary font-mono tracking-tighter flex items-baseline">
+                        <span class="counter" data-target="20">0</span><span class="text-lg">+</span>
+                    </div>
+                    <div class="text-xs font-bold text-[#b4b4bc] mt-1 uppercase tracking-wider font-mono">Tools Mastery</div>
+                    <div class="mt-3 flex gap-1">
+                        <span class="w-1 h-2 bg-[#30363d] group-hover:bg-[#58a6ff] transition delay-75"></span>
+                        <span class="w-1 h-2 bg-[#30363d] group-hover:bg-[#58a6ff] transition delay-100"></span>
+                        <span class="w-1 h-2 bg-[#30363d] group-hover:bg-[#58a6ff] transition delay-150"></span>
+                    </div>
+                </div>
+
+                <!-- Stat Card 3 -->
+                <div class="stat-card p-4 flex flex-col items-center group cursor-default">
+                    <div class="w-full flex justify-between items-center mb-2">
+                        <span class="font-mono text-[10px] text-[#6b6b78]">REG_03</span>
+                        <div class="status-led"></div>
+                    </div>
+                    <div class="text-4xl font-bold text-primary font-mono tracking-tighter flex items-baseline">
+                        <span class="counter" data-target="6">0</span>
+                    </div>
+                    <div class="text-xs font-bold text-[#b4b4bc] mt-1 uppercase tracking-wider font-mono">Projects</div>
+                </div>
+
+                <!-- Stat Card 4 -->
+                <div class="stat-card p-4 flex flex-col items-center group cursor-default">
+                    <div class="w-full flex justify-between items-center mb-2">
+                        <span class="font-mono text-[10px] text-[#6b6b78]">REG_HV</span>
+                        <div class="status-led"></div>
+                    </div>
+                    <div class="text-4xl font-bold text-primary font-mono tracking-tighter flex items-baseline">
+                        <span class="counter" data-target="600">0</span><span class="text-lg">V</span>
+                    </div>
+                    <div class="text-xs font-bold text-[#b4b4bc] mt-1 uppercase tracking-wider font-mono">Safety Rated</div>
+                    <div class="text-[10px] text-[#f85149] mt-2 font-mono opacity-50 group-hover:opacity-100 transition">
+                        <i class="fas fa-bolt"></i> HIGH VOLTAGE
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         EXPERIENCE
+    ═══════════════════════════════════════════ -->
+    <section id="experience" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-primary mb-12 flex items-center font-mono uppercase tracking-widest section-heading-border pb-4 w-full">
+                <span class="text-[#6b6b78] mr-2">//</span> Work_Log
+            </h2>
+
+            <div class="relative timeline-border ml-4 space-y-12 border-dashed">
+
+                <!-- Divider: Work Experience -->
+                <div class="ml-10 relative flex items-center gap-4 py-2">
+                    <div class="absolute -left-[47px] top-1/2 -translate-y-1/2 w-3 h-3 bg-[#58a6ff]/40 rotate-45 z-10"></div>
+                    <div class="absolute -left-[41px] top-1/2 -translate-y-1/2 w-8 h-[2px] timeline-connector"></div>
+                    <p class="text-xs font-mono font-bold uppercase tracking-widest text-[#b4b4bc] border border-[#30363d] px-3 py-1 bg-[#1c2128]/50">
+                        // Work_Experience
+                    </p>
+                    <div class="flex-1 h-[1px] bg-[#1c2128]"></div>
+                </div>
+
+                <!-- Item 1: Schneider Electric -->
+                <div class="ml-10 relative">
+                    <div class="absolute -left-[47px] top-6 circuit-node z-10"></div>
+                    <div class="absolute -left-[41px] top-[30px] w-8 h-[2px] timeline-connector"></div>
+                    <div class="tech-card p-8 relative">
+                        <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                        <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                        <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                        <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-primary font-mono">HMI Project Intern</h3>
+                                <p class="text-[#b4b4bc] font-bold text-sm uppercase tracking-wide mt-1">Schneider Electric India, Bengaluru</p>
+                            </div>
+                            <span class="font-mono text-xs bg-[#1c2128] text-[#b4b4bc] px-2 py-1 border border-[#30363d] mt-2 md:mt-0">
+                                [TIME: May – Aug 2025]
+                            </span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-[#e2e2e6] font-semibold text-sm mb-2 blue-band pl-3 py-1">
+                                Engineered a Dark Theme UI for Industrial HMI Software
+                            </p>
+                            <p class="text-[#b4b4bc] text-sm leading-relaxed mb-3">
+                                Took ownership of a full interface overhaul for Schneider Electric's <strong class="text-primary">EcoStruxure Operator Terminal Expert (EOTE)</strong> software, moving from a high-contrast default theme to a polished dark UI designed for operators working long shifts in demanding industrial environments.
+                            </p>
+                        </div>
+                        <ul class="list-none text-[#b4b4bc] space-y-3 leading-relaxed text-sm font-medium">
+                            <li class="flex items-start">
+                                <span class="text-[#3fb950] mr-2 font-bold font-mono">01.</span>
+                                <span><strong class="text-primary">UI Engineering:</strong> Built the dark theme interface using <strong class="text-primary">C# and WPF</strong>, handling styling, component theming, and visual hierarchy to ensure readability and consistency across all operator-facing screens.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-[#3fb950] mr-2 font-bold font-mono">02.</span>
+                                <span><strong class="text-primary">Operator Experience:</strong> Focused the design around reducing visual fatigue — a critical factor for control room operators monitoring systems over extended periods in low-light industrial settings.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-[#3fb950] mr-2 font-bold font-mono">03.</span>
+                                <span><strong class="text-primary">Development Lifecycle:</strong> Contributed to the HMI group's broader development pipeline, documenting software licensing enhancements and supporting feature integration across product releases.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Item 2: Bahrain Electromechanical -->
+                <div class="ml-10 relative">
+                    <div class="absolute -left-[47px] top-6 circuit-node z-10"></div>
+                    <div class="absolute -left-[41px] top-[30px] w-8 h-[2px] timeline-connector"></div>
+                    <div class="tech-card p-8 relative">
+                        <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                        <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                        <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                        <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-primary font-mono">Project Intern</h3>
+                                <p class="text-[#b4b4bc] font-bold text-sm uppercase tracking-wide mt-1">Bahrain Electromechanical Services Company (BEMCO), Bahrain</p>
+                            </div>
+                            <span class="font-mono text-xs bg-[#1c2128] text-[#b4b4bc] px-2 py-1 border border-[#30363d] mt-2 md:mt-0">
+                                [TIME: Jun – Jul 2024]
+                            </span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-[#e2e2e6] font-semibold text-sm mb-2 blue-band pl-3 py-1">
+                                Contributed to a $525M Infrastructure Project
+                            </p>
+                            <p class="text-[#b4b4bc] text-sm leading-relaxed mb-3">
+                                Worked on live electrical design and systems integration for the <strong class="text-primary">Bahrain Marina Development</strong> — a large-scale infrastructure project requiring precision engineering across grounding, protection, and building safety systems.
+                            </p>
+                        </div>
+                        <ul class="list-none text-[#b4b4bc] space-y-3 leading-relaxed text-sm font-medium">
+                            <li class="flex items-start">
+                                <span class="text-[#3fb950] mr-2 font-bold font-mono">01.</span>
+                                <span><strong class="text-primary">Grounding & Protection Systems:</strong> Designed and optimized grounding systems achieving <strong class="text-primary">sub-1-ohm resistance</strong>, and implemented lightning protection schemes to safeguard the facility's electrical infrastructure.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-[#3fb950] mr-2 font-bold font-mono">02.</span>
+                                <span><strong class="text-primary">Electrical Distribution:</strong> Performed cable tray calculations to ensure a robust and code-compliant electrical distribution layout across the development's building network.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-[#3fb950] mr-2 font-bold font-mono">03.</span>
+                                <span><strong class="text-primary">Building Safety Systems:</strong> Reviewed IFC drawings and supported installation of integrated safety systems — fire alarms, CO/heat sensors, CCTV, and access control — ensuring strict adherence to project specifications.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Divider: Leadership -->
+                <div class="ml-10 relative flex items-center gap-4 py-2">
+                    <div class="absolute -left-[47px] top-1/2 -translate-y-1/2 w-3 h-3 bg-[#58a6ff]/40 rotate-45 z-10"></div>
+                    <div class="absolute -left-[41px] top-1/2 -translate-y-1/2 w-8 h-[2px] timeline-connector"></div>
+                    <p class="text-xs font-mono font-bold uppercase tracking-widest text-[#b4b4bc] border border-[#30363d] px-3 py-1 bg-[#1c2128]/50">
+                        // Leadership_Roles
+                    </p>
+                    <div class="flex-1 h-[1px] bg-[#1c2128]"></div>
+                </div>
+
+                <!-- Item 3: Ojas Racing -->
+                <div class="ml-10 relative">
+                    <div class="absolute -left-[47px] top-6 circuit-node z-10"></div>
+                    <div class="absolute -left-[41px] top-[30px] w-8 h-[2px] timeline-connector"></div>
+                    <div class="tech-card p-8 relative">
+                        <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                        <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                        <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                        <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-primary font-mono">Outreach Lead & Electrical Engineer</h3>
+                                <p class="text-[#b4b4bc] font-bold text-sm uppercase tracking-wide mt-1">Team Ojas Racing (Formula Student)</p>
+                            </div>
+                            <span class="font-mono text-xs bg-[#1c2128] text-[#b4b4bc] px-2 py-1 border border-[#30363d] mt-2 md:mt-0">
+                                [TIME: May 2024 – Present]
+                            </span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-[#e2e2e6] font-semibold text-sm mb-2 blue-band pl-3 py-1">
+                                Engineered a Decentralized ECU & BMS Architecture
+                            </p>
+                            <p class="text-[#b4b4bc] text-sm leading-relaxed mb-3">
+                                Moved away from a monolithic controller to a distributed network of <strong class="text-primary">CAN-connected nodes</strong>, significantly reducing wiring harness complexity and weight by placing acquisition modules closer to their signal sources. This architecture integrated a custom <strong class="text-primary">Master-Slave BMS</strong> to accommodate the battery stack configuration.
+                            </p>
+                        </div>
+                        <ul class="list-none text-[#b4b4bc] space-y-3 leading-relaxed text-sm font-medium">
+                            <li class="flex items-start">
+                                <span class="text-[#3fb950] mr-2 font-bold font-mono">01.</span>
+                                <span><strong class="text-primary">High-Voltage Integration:</strong> Architected the 600V system integration, implementing <strong class="text-primary">isoSPI</strong> for noise-immune battery monitoring (BMS) in an electrically noisy environment.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-[#3fb950] mr-2 font-bold font-mono">02.</span>
+                                <span><strong class="text-primary">Safety & FMEA:</strong> Led Failure Mode and Effects Analysis (FMEA) to validate safety-critical logic, ensuring compliance with strict EV racing regulations.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-[#3fb950] mr-2 font-bold font-mono">03.</span>
+                                <span><strong class="text-primary">Review Process:</strong> Established a rigorous DFM/DFA review pipeline for schematics and PCB layouts, reducing hardware re-spins.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Item 4: ISOI -->
+                <div class="ml-10 relative">
+                    <div class="absolute -left-[47px] top-6 circuit-node z-10"></div>
+                    <div class="absolute -left-[41px] top-[30px] w-8 h-[2px] timeline-connector"></div>
+                    <div class="tech-card p-8 relative">
+                        <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                        <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                        <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                        <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-primary font-mono">Design Head</h3>
+                                <p class="text-[#b4b4bc] font-bold text-sm uppercase tracking-wide mt-1">Instrument Society of India (ISOI) — VIT Vellore</p>
+                            </div>
+                            <span class="font-mono text-xs bg-[#1c2128] text-[#b4b4bc] px-2 py-1 border border-[#30363d] mt-2 md:mt-0">
+                                [TIME: Jun 2024 – Jul 2025]
+                            </span>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-[#e2e2e6] font-semibold text-sm mb-2 blue-band pl-3 py-1">
+                                Led Visual Design for a Major Student Technical Chapter
+                            </p>
+                            <p class="text-[#b4b4bc] text-sm leading-relaxed mb-3">
+                                Built and managed the chapter's visual identity — producing high-visibility creatives for some of VIT's largest events while mentoring the next generation of designers in <strong class="text-primary">Figma and Canva</strong>.
+                            </p>
+                        </div>
+                        <ul class="list-none text-[#b4b4bc] space-y-3 leading-relaxed text-sm font-medium">
+                            <li class="flex items-start">
+                                <span class="text-[#3fb950] mr-2 font-bold font-mono">01.</span>
+                                <span><strong class="text-primary">Event Creatives:</strong> Designed <strong class="text-primary">25+ posters</strong> and promotional materials for flagship fests Riviera and Gravitas, displayed across major VIT venues to drive student engagement and event visibility.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-[#3fb950] mr-2 font-bold font-mono">02.</span>
+                                <span><strong class="text-primary">Event Execution:</strong> Organized hackathons and technical events end-to-end — managing planning, faculty coordination, and on-ground execution to deliver consistent, well-run experiences.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-[#3fb950] mr-2 font-bold font-mono">03.</span>
+                                <span><strong class="text-primary">Team Mentorship:</strong> Led and mentored a team of junior designers in Canva and Figma, standardizing design workflows and maintaining a consistent visual identity across all chapter communications.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         PROJECTS
+    ═══════════════════════════════════════════ -->
+    <section id="projects" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-primary mb-12 flex items-center font-mono uppercase tracking-widest section-heading-border pb-4 w-full">
+                <span class="text-[#6b6b78] mr-2">//</span> Project_Modules
+            </h2>
+
+            <div class="flex flex-wrap gap-2 mb-8 justify-center" id="project-filters" role="group" aria-label="Filter projects">
+                <button type="button" class="project-tag active rounded" data-filter="all">ALL</button>
+                <button type="button" class="project-tag rounded" data-filter="hv">HV / BMS</button>
+                <button type="button" class="project-tag rounded" data-filter="embedded">EMBEDDED</button>
+                <button type="button" class="project-tag rounded" data-filter="ml">ML / AI</button>
+                <button type="button" class="project-tag rounded" data-filter="simulation">SIMULATION</button>
+            </div>
+
+            <div class="space-y-6" id="project-list">
+
+                <!-- Project 1: BMS - FLAGSHIP -->
+                <div class="tech-card relative p-8 project-module" data-categories="hv embedded">
+                    <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                    <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                    <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                    <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                    <div class="flex flex-col lg:flex-row gap-8">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-mono text-[#6b6b78] uppercase tracking-widest">01 / FLAGSHIP</span>
+                                <span class="font-mono text-xs bg-[#1c2128] text-[#b4b4bc] px-2 py-1 border border-[#30363d]">Aug 2024 – Present</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-primary font-mono uppercase leading-tight mb-4">
+                                HV Battery Management<br>System — 600V BMS
+                            </h3>
+                            <p class="text-[#b4b4bc] text-sm leading-relaxed mb-4">
+                                Engineered a modular, fault-tolerant BMS for a <strong class="text-primary">600V, 3P140S battery pack</strong> for a Formula Student EV. Designed the full hardware architecture from cell-level monitoring to pack-level protection, with a Master-Slave topology using <strong class="text-primary">isoSPI</strong> for noise-immune communication in a high-EMI race environment.
+                            </p>
+                            <div class="inline-flex items-center gap-2 green-badge text-xs font-mono font-bold px-3 py-2 mb-4">
+                                <span>↑</span> Sub-5ms fault response — hardware interlock with AIR control
+                            </div>
+                            <p class="text-[#b4b4bc] text-sm leading-relaxed mb-6">
+                                Developed STM32-based firmware for real-time State of Charge (SoC) estimation, over-voltage/under-voltage protection, and thermal runaway detection. Integrated CAN telemetry for live data logging and dashboard display during track sessions.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-pill px-2 py-1 rounded">C++</span>
+                                <span class="skill-pill px-2 py-1 rounded">STM32</span>
+                                <span class="skill-pill px-2 py-1 rounded">isoSPI</span>
+                                <span class="skill-pill px-2 py-1 rounded">CAN Bus</span>
+                                <span class="skill-pill px-2 py-1 rounded">LTspice</span>
+                                <span class="skill-pill px-2 py-1 rounded">Altium</span>
+                            </div>
+                        </div>
+                        <div class="lg:w-80 flex-shrink-0">
+                            <div class="h-64 bg-[#1c2128] relative overflow-hidden border border-[#30363d]">
+                                <img src="assets/images/BMS_1.jpg" alt="600V BMS hardware" loading="lazy" width="320" height="256" class="w-full h-full object-cover portfolio-img">
+                                <div class="absolute top-2 right-2 bg-[#0d1117]/90 px-2 py-1 text-[10px] font-mono border border-[#30363d] text-[#e2e2e6]">
+                                    ID: MOD_BMS_HV
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Biped Robot - FLAGSHIP -->
+                <div class="tech-card relative p-8 project-module" data-categories="embedded ml">
+                    <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                    <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                    <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                    <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                    <div class="flex flex-col lg:flex-row gap-8">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-mono text-[#6b6b78] uppercase tracking-widest">02 / FLAGSHIP</span>
+                                <span class="font-mono text-xs bg-[#1c2128] text-[#b4b4bc] px-2 py-1 border border-[#30363d]">Mar – Dec 2025</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-primary font-mono uppercase leading-tight mb-4">
+                                Hybrid Biped Robot<br>With Tracked Locomotion
+                            </h3>
+                            <p class="text-[#b4b4bc] text-sm leading-relaxed mb-4">
+                                Designed and built a hybrid bipedal robot prototype with a <strong class="text-primary">four-degree-of-freedom leg system</strong> integrating walking and rolling mechanisms. Optimized through <strong class="text-primary">Fusion 360 CAD modeling</strong> and MATLAB simulation, fabricated using 3D-printed PLA components with balanced weight distribution for stable single-leg balance across varied terrains.
+                            </p>
+                            <div class="inline-flex items-center gap-2 green-badge text-xs font-mono font-bold px-3 py-2 mb-4">
+                                <span>↑</span> 30% energy efficiency — gear systems eliminated
+                            </div>
+                            <p class="text-[#b4b4bc] text-sm leading-relaxed mb-6">
+                                Implemented <strong class="text-primary">ESP32-based control architecture</strong> with IMU sensor integration for dynamic balance correction. Developed trajectory planning algorithms with real-time gait correction via IMU feedback — detecting leg angles during movement and dynamically adjusting servo positions for stability enhancement.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-pill px-2 py-1 rounded">ROS</span>
+                                <span class="skill-pill px-2 py-1 rounded">Gazebo</span>
+                                <span class="skill-pill px-2 py-1 rounded">Fusion 360</span>
+                                <span class="skill-pill px-2 py-1 rounded">Ansys</span>
+                                <span class="skill-pill px-2 py-1 rounded">ESP32</span>
+                                <span class="skill-pill px-2 py-1 rounded">IMU</span>
+                            </div>
+                        </div>
+                        <div class="lg:w-80 flex-shrink-0">
+                            <div class="h-64 bg-[#1c2128] relative overflow-hidden border border-[#30363d]">
+                                <img src="assets/images/biped_robot.jpg" alt="Hybrid Biped Robot" loading="lazy" width="320" height="256" class="w-full h-full object-cover portfolio-img">
+                                <div class="absolute top-2 right-2 bg-[#0d1117]/90 px-2 py-1 text-[10px] font-mono border border-[#30363d] text-[#e2e2e6]">
+                                    ID: ROBOT_BIPED
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Two Cards -->
+                <div class="grid md:grid-cols-2 gap-6">
+
+                    <!-- Project 3: F1TENTH Autonomous Racing Vehicle -->
+                    <div class="tech-card relative p-8 project-module" data-categories="ml embedded">
+                        <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                        <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                        <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                        <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-[#6b6b78] uppercase tracking-widest">03</span>
+                            <span class="font-mono text-xs bg-[#1c2128] text-[#b4b4bc] px-2 py-1 border border-[#30363d]">2026</span>
+                        </div>
+                        <div class="h-40 bg-[#1c2128] relative overflow-hidden border border-[#30363d] mb-6">
+                            <img src="assets/images/autonomous_racer.jpg" alt="Autonomous Racing Vehicle" loading="lazy" width="400" height="160" class="w-full h-full object-cover portfolio-img">
+                            <div class="absolute top-2 right-2 bg-[#0d1117]/90 px-2 py-1 text-[10px] font-mono border border-[#30363d] text-[#e2e2e6]">
+                                ID: F1TENTH_CAR
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary font-mono uppercase leading-tight mb-3">
+                            f1tenth Autonomous Racing Vehicle<br>With Deep RL
+                        </h3>
+                        <p class="text-[#b4b4bc] text-sm leading-relaxed mb-4">
+                            Built a 1/10-scale autonomous racing vehicle from the ground up with a custom CAD chassis, <strong class="text-primary">tri-domain power architecture</strong> to isolate motor noise from compute systems, and a <strong class="text-primary">Deep Q-Network</strong> trained in C++ with a 23-dimensional LIDAR state vector. Ran a full <strong class="text-primary">ROS 2 stack</strong> on NVIDIA Jetson with SLAM, YOLOv8, and EKF sensor fusion.
+                        </p>
+                        <div class="inline-flex items-center gap-2 green-badge text-xs font-mono font-bold px-3 py-2 mb-4">
+                            <span>↑</span> 83% learned behavior by episode 200 AND 10% lighter than commercial baseline
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill px-2 py-1 rounded">C++</span>
+                            <span class="skill-pill px-2 py-1 rounded">LibTorch</span>
+                            <span class="skill-pill px-2 py-1 rounded">ROS 2</span>
+                            <span class="skill-pill px-2 py-1 rounded">NVIDIA Jetson</span>
+                            <span class="skill-pill px-2 py-1 rounded">SLAM</span>
+                            <span class="skill-pill px-2 py-1 rounded">SolidWorks</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: AI RC Car -->
+                    <div class="tech-card relative p-8 project-module" data-categories="ml embedded">
+                        <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                        <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                        <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                        <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-[#6b6b78] uppercase tracking-widest">04</span>
+                            <span class="font-mono text-xs bg-[#1c2128] text-[#b4b4bc] px-2 py-1 border border-[#30363d]">2024</span>
+                        </div>
+                        <div class="h-40 bg-[#1c2128] relative overflow-hidden border border-[#30363d] mb-6">
+                            <img src="assets/images/rc_bot.jpg" alt="AI autonomous RC car" loading="lazy" width="400" height="160" class="w-full h-full object-cover portfolio-img">
+                            <div class="absolute top-2 right-2 bg-[#0d1117]/90 px-2 py-1 text-[10px] font-mono border border-[#30363d] text-[#e2e2e6]">
+                                ID: ROBOT_AI
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary font-mono uppercase leading-tight mb-3">
+                            AI-Powered Autonomous RC Car
+                        </h3>
+                        <p class="text-[#b4b4bc] text-sm leading-relaxed mb-4">
+                            Built an autonomous ground vehicle with a <strong class="text-primary">YOLO-based vision pipeline</strong> for real-time human detection and tracking. Integrated OpenCV for frame preprocessing and embedded PID control loops for smooth directional response. Deployed on Raspberry Pi with live camera feed processing at 20+ FPS.
+                        </p>
+                        <div class="inline-flex items-center gap-2 green-badge text-xs font-mono font-bold px-3 py-2 mb-4">
+                            <span>↑</span> 20+ FPS real-time inference on edge hardware
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill px-2 py-1 rounded">Python</span>
+                            <span class="skill-pill px-2 py-1 rounded">YOLO</span>
+                            <span class="skill-pill px-2 py-1 rounded">OpenCV</span>
+                            <span class="skill-pill px-2 py-1 rounded">Raspberry Pi</span>
+                            <span class="skill-pill px-2 py-1 rounded">PID Control</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 3: Two Cards -->
+                <div class="grid md:grid-cols-2 gap-6">
+
+                    <!-- Project 5: Digital Twin -->
+                    <div class="tech-card relative p-6 project-module" data-categories="simulation hv">
+                        <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                        <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                        <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                        <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-[#6b6b78] uppercase tracking-widest">05</span>
+                            <span class="font-mono text-xs bg-[#1c2128] text-[#b4b4bc] px-2 py-1 border border-[#30363d]">2024</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-primary font-mono uppercase leading-tight mb-3">
+                            Digital Twin of Formula Student Car
+                        </h3>
+                        <p class="text-[#b4b4bc] text-sm leading-relaxed mb-4 border-l-2 border-[#30363d] pl-3">
+                            Engineered a comprehensive Formula Student EV digital twin in MATLAB Simscape, integrating multi-physics models across battery management, powertrain, thermal, and vehicle dynamics subsystems to optimize energy consumption, component sizing, and race strategy.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill px-2 py-1 rounded">MATLAB</span>
+                            <span class="skill-pill px-2 py-1 rounded">Simulink</span>
+                            <span class="skill-pill px-2 py-1 rounded">Simscape</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 6: SPAM/HAM NLP -->
+                    <div class="tech-card relative p-6 project-module" data-categories="ml">
+                        <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                        <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                        <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                        <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-[#6b6b78] uppercase tracking-widest">06</span>
+                            <span class="font-mono text-xs bg-[#1c2128] text-[#b4b4bc] px-2 py-1 border border-[#30363d]">2023</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-primary font-mono uppercase leading-tight mb-3">
+                            SPAM/HAM Classification Using NLP
+                        </h3>
+                        <p class="text-[#b4b4bc] text-sm leading-relaxed mb-4 border-l-2 border-[#30363d] pl-3">
+                            Built and deployed a spam detection model achieving 93% accuracy, translating practical AI concepts into a production-ready solution with highly reliable classification and minimal false alarms.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill px-2 py-1 rounded">Python</span>
+                            <span class="skill-pill px-2 py-1 rounded">scikit-learn</span>
+                            <span class="skill-pill px-2 py-1 rounded">NLP</span>
+                            <span class="skill-pill px-2 py-1 rounded">ML</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SKILLS
+    ═══════════════════════════════════════════ -->
+    <section id="skills" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-primary mb-12 flex items-center font-mono uppercase tracking-widest section-heading-border pb-4 w-full">
+                <span class="text-[#6b6b78] mr-2">//</span> Specs & Tools
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+
+                <!-- Card 1: Programming -->
+                <div class="tech-card p-8 relative">
+                    <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                    <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                    <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                    <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                    <h3 class="text-sm font-bold text-primary mb-6 font-mono uppercase flex items-center gap-2 border-b border-dashed border-[#30363d] pb-3">
+                        <i class="fas fa-code text-[#b4b4bc]"></i> Programming
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-pill px-3 py-2 rounded">MATLAB</span>
+                        <span class="skill-pill px-3 py-2 rounded">Python</span>
+                        <span class="skill-pill px-3 py-2 rounded">Java</span>
+                        <span class="skill-pill px-3 py-2 rounded">C / C++</span>
+                        <span class="skill-pill px-3 py-2 rounded">C#</span>
+                        <span class="skill-pill px-3 py-2 rounded">Verilog</span>
+                        <span class="skill-pill px-3 py-2 rounded">Embedded C</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Design Software -->
+                <div class="tech-card p-8 relative">
+                    <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                    <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                    <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                    <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                    <h3 class="text-sm font-bold text-primary mb-6 font-mono uppercase flex items-center gap-2 border-b border-dashed border-[#30363d] pb-3">
+                        <i class="fas fa-microchip text-[#b4b4bc]"></i> Design Software
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-pill px-3 py-2 rounded">KiCAD</span>
+                        <span class="skill-pill px-3 py-2 rounded">Altium Designer</span>
+                        <span class="skill-pill px-3 py-2 rounded">EasyEDA</span>
+                        <span class="skill-pill px-3 py-2 rounded">AutoCAD Electrical</span>
+                        <span class="skill-pill px-3 py-2 rounded">Fusion 360</span>
+                        <span class="skill-pill px-3 py-2 rounded">EcoStruxure OTE</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Simulation -->
+                <div class="tech-card p-8 relative">
+                    <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                    <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                    <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                    <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                    <h3 class="text-sm font-bold text-primary mb-6 font-mono uppercase flex items-center gap-2 border-b border-dashed border-[#30363d] pb-3">
+                        <i class="fas fa-wave-square text-[#b4b4bc]"></i> Simulation
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-pill px-3 py-2 rounded">MATLAB Simscape</span>
+                        <span class="skill-pill px-3 py-2 rounded">Simulink</span>
+                        <span class="skill-pill px-3 py-2 rounded">OrCAD Pspice</span>
+                        <span class="skill-pill px-3 py-2 rounded">NI Multisim</span>
+                        <span class="skill-pill px-3 py-2 rounded">NI LabVIEW</span>
+                        <span class="skill-pill px-3 py-2 rounded">ROS / Gazebo</span>
+                        <span class="skill-pill px-3 py-2 rounded">Ansys</span>
+                        <span class="skill-pill px-3 py-2 rounded">LTspice</span>
+                    </div>
+                </div>
+
+                <!-- Card 4: Productivity & Design -->
+                <div class="tech-card p-8 relative">
+                    <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                    <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                    <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                    <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                    <h3 class="text-sm font-bold text-primary mb-6 font-mono uppercase flex items-center gap-2 border-b border-dashed border-[#30363d] pb-3">
+                        <i class="fas fa-palette text-[#b4b4bc]"></i> Productivity & Design
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-pill px-3 py-2 rounded">Canva</span>
+                        <span class="skill-pill px-3 py-2 rounded">Figma</span>
+                        <span class="skill-pill px-3 py-2 rounded">MS Word</span>
+                        <span class="skill-pill px-3 py-2 rounded">Excel</span>
+                        <span class="skill-pill px-3 py-2 rounded">PowerPoint</span>
+                        <span class="skill-pill px-3 py-2 rounded">Outlook</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         CERTIFICATIONS
+    ═══════════════════════════════════════════ -->
+    <section id="certifications" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-primary mb-12 flex items-center font-mono uppercase tracking-widest section-heading-border pb-4 w-full">
+                <span class="text-[#6b6b78] mr-2">//</span> Courses & Credentials
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Cert 1 -->
+                <div class="tech-card p-6 relative">
+                    <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                    <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                    <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                    <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-mono text-[#fafafa] uppercase tracking-widest">2025</span>
+                        <div class="w-8 h-8 cert-icon-box flex items-center justify-center">
+                            <i class="fas fa-microchip text-[#fafafa] text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-[#c8c8d0] font-mono text-sm mb-1">PCB Design with Altium Designer</h3>
+                    <p class="text-[#b4b4bc] text-xs font-mono">Coursera</p>
+                </div>
+
+                <!-- Cert 2 -->
+                <div class="tech-card p-6 relative">
+                    <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                    <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                    <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                    <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-mono text-[#fafafa] uppercase tracking-widest">2025</span>
+                        <div class="w-8 h-8 cert-icon-box flex items-center justify-center">
+                            <i class="fas fa-building text-[#fafafa] text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-[#c8c8d0] font-mono text-sm mb-1">Commercial Project Manager Job Simulation</h3>
+                    <p class="text-[#b4b4bc] text-xs font-mono">Siemens (Online)</p>
+                </div>
+
+                <!-- Cert 3 -->
+                <div class="tech-card p-6 relative">
+                    <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                    <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                    <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                    <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-mono text-[#fafafa] uppercase tracking-widest">2025</span>
+                        <div class="w-8 h-8 cert-icon-box flex items-center justify-center">
+                            <i class="fas fa-bolt text-[#fafafa] text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-[#c8c8d0] font-mono text-sm mb-1">Distributed Generation</h3>
+                    <p class="text-[#b4b4bc] text-xs font-mono">Schneider Electric University</p>
+                </div>
+
+                <!-- Cert 4 -->
+                <div class="tech-card p-6 relative">
+                    <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                    <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                    <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                    <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-mono text-[#fafafa] uppercase tracking-widest">2024</span>
+                        <div class="w-8 h-8 cert-icon-box flex items-center justify-center">
+                            <i class="fas fa-robot text-[#fafafa] text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-[#c8c8d0] font-mono text-sm mb-1">Internship in Artificial Intelligence</h3>
+                    <p class="text-[#b4b4bc] text-xs font-mono">Acmegrade (Online)</p>
+                </div>
+
+                <!-- Cert 5 -->
+                <div class="tech-card p-6 relative">
+                    <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                    <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                    <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                    <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-mono text-[#fafafa] uppercase tracking-widest">2025</span>
+                        <div class="w-8 h-8 cert-icon-box flex items-center justify-center">
+                            <i class="fas fa-star text-[#fafafa] text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-[#c8c8d0] font-mono text-sm mb-1">Event Organizer — Guest Care</h3>
+                    <p class="text-[#b4b4bc] text-xs font-mono">Screencraft Hackathon × Schneider / VIT</p>
+                </div>
+
+                <!-- Cert 6: HV Safety -->
+                <div class="tech-card p-6 relative">
+                    <div class="absolute top-0 left-0 w-2 h-2 border-t border-l border-[#30363d]"></div>
+                    <div class="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#30363d]"></div>
+                    <div class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#30363d]"></div>
+                    <div class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[#30363d]"></div>
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-xs font-mono text-[#fafafa] uppercase tracking-widest">2025</span>
+                        <div class="w-8 h-8 cert-icon-box flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-[#fafafa] text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-[#c8c8d0] font-mono text-sm mb-1">DGUV 209-093 3E</h3>
+                    <p class="text-[#b4b4bc] text-xs font-mono">High-Voltage Safety Certified</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         FOOTER / CONTACT
+    ═══════════════════════════════════════════ -->
+    <footer id="contact" class="footer-bg py-12 mt-12 pb-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="font-mono">
+                    <h2 class="text-xl font-bold text-primary mb-6 uppercase tracking-wider">// Collaboration_Request</h2>
+                    <div class="space-y-4 text-sm">
+                        <a href="mailto:subhamsaha2234@gmail.com" class="flex items-center footer-link transition group p-2 hover:border-[#30363d] hover:text-[#b4b4bc]">
+                            <i class="fas fa-envelope w-6 text-center mr-3 text-[#b4b4bc]"></i> subhamsaha2234@gmail.com
+                        </a>
+                        <a href="tel:+917418851972" class="flex items-center footer-link transition group p-2 hover:border-[#30363d] hover:text-[#b4b4bc]">
+                            <i class="fas fa-phone w-6 text-center mr-3 text-[#b4b4bc]"></i> +91 74188 51972
+                        </a>
+                        <div class="flex items-center footer-link p-2 text-[#b4b4bc]">
+                            <i class="fas fa-map-marker-alt w-6 text-center mr-3 text-[#b4b4bc]"></i> VIT Vellore // Howrah, Kolkata
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Title Block Table -->
+                <div class="flex items-end justify-end">
+                    <table class="w-full md:w-auto title-block text-xs font-mono shadow-lg">
+                        <tr>
+                            <td colspan="2" class="font-bold bg-slate-100">PROJECT TITLE</td>
+                            <td class="font-bold bg-slate-100">REV</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-lg font-bold text-primary">PORTFOLIO_MAIN_SCHEMATIC</td>
+                            <td class="text-center text-[#e2e2e6]">2.0</td>
+                        </tr>
+                        <tr>
+                            <td class="w-24 bg-slate-100">DRAWN BY</td>
+                            <td class="text-primary">Subham Saha</td>
+                            <td rowspan="2" class="text-center align-middle bg-slate-50 w-24">
+                                <i class="fas fa-qrcode text-3xl text-[#b4b4bc]"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="bg-slate-100">DATE</td>
+                            <td class="text-primary">2026-05-17</td>
+                        </tr>
+                        <tr>
+                            <td class="bg-slate-100">SHEET</td>
+                            <td colspan="2" class="text-primary">1 OF 1</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <p class="text-[#6b6b78] text-xs text-center font-mono">© 2026 Subham Saha. Designed with KiCad aesthetics.</p>
+        </div>
+    </footer>
+
+    <!-- AI Chat Floating Button -->
+    <button id="ai-toggle-btn" class="ai-fab bg-[#1c2128] text-white px-4 py-2 text-xs font-bold border border-[#30363d] hover:bg-[#21262d] flex items-center gap-2">
+        <i class="fas fa-satellite-dish text-[#3fb950]"></i> ASK_HERE
+    </button>
+
+    <!-- AI Chat Terminal Window -->
+    <div id="ai-terminal" class="ai-terminal">
+        <div class="terminal-header">
+            <span>// SUBHAM_AI_CORE_V2.1</span>
+            <button id="close-terminal" class="hover:text-[#f85149]">X</button>
+        </div>
+        <div id="terminal-log" class="terminal-body scroll-smooth">
+            <div class="msg-system">> SYSTEM_READY...</div>
+            <div class="msg-system">> FALLBACK_NEURAL_NET: ACTIVE (OFFLINE_MODE)</div>
+            <div class="msg-ai">> Hello. I am the digital twin of Subham. Ask about Projects, BMS, internships, or Contact.</div>
+        </div>
+        <div class="px-3 py-2 border-t border-[#30363d] flex flex-wrap gap-1.5 bg-[#161b22] border-[#30363d]" id="prompt-chips">
+            <button type="button" class="prompt-chip" data-prompt="Tell me about the 600V BMS">BMS</button>
+            <button type="button" class="prompt-chip" data-prompt="Schneider internship">Schneider</button>
+            <button type="button" class="prompt-chip" data-prompt="Ojas Racing experience">Ojas</button>
+            <button type="button" class="prompt-chip" data-prompt="Contact info">Contact</button>
+        </div>
+        <div class="terminal-input-area flex gap-2">
+            <span class="text-[#58a6ff]">></span>
+            <input type="text" id="user-input" class="terminal-input" placeholder="Enter query..." autocomplete="off">
+        </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar fixed bottom-0 left-0 w-full bg-[#0d1117] text-[#b4b4bc] text-[10px] font-mono py-1 px-4 flex justify-between z-40 border-t border-[#21262d]">
+        <div>MODE: VIEWING</div>
+        <div id="mouse-coords" class="hidden md:block">COORDS: X:001 Y:002</div>
+        <div>GRID: 20px</div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mouse Coordinate Tracking
+            const coordsDisplay = document.getElementById('mouse-coords');
+            document.addEventListener('mousemove', (e) => {
+                if (coordsDisplay) {
+                    const x = Math.round(e.pageX).toString().padStart(4, '0');
+                    const y = Math.round(e.pageY).toString().padStart(4, '0');
+                    coordsDisplay.textContent = `COORDS: X:${x} Y:${y}`;
+                }
+            });
+
+            // --- SCROLL SPY ---
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+
+            function activeLinkHandler() {
+                let current = '';
+                const scrollY = window.scrollY;
+                if ((window.innerHeight + scrollY) >= document.documentElement.scrollHeight - 50) {
+                    current = 'contact';
+                } else {
+                    const triggerPoint = window.innerHeight * 0.3;
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.offsetHeight;
+                        if (scrollY >= (sectionTop - triggerPoint) && scrollY < (sectionTop + sectionHeight - triggerPoint)) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+                }
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            window.addEventListener('scroll', activeLinkHandler);
+            activeLinkHandler();
+
+            // Mobile menu
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    const open = mobileMenu.classList.toggle('open');
+                    menuBtn.setAttribute('aria-expanded', open);
+                });
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('open');
+                        menuBtn.setAttribute('aria-expanded', 'false');
+                    });
+                });
+            }
+
+            // --- STATS COUNT-UP ---
+            const statsSection = document.getElementById('stats-panel');
+            const counters = document.querySelectorAll('.counter');
+            let hasAnimated = false;
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasAnimated) {
+                        hasAnimated = true;
+                        counters.forEach(counter => {
+                            const target = parseFloat(counter.getAttribute('data-target'));
+                            const duration = 1500;
+                            const startTime = performance.now();
+                            function update(currentTime) {
+                                const elapsed = currentTime - startTime;
+                                const progress = Math.min(elapsed / duration, 1);
+                                const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                                const current = (target * ease);
+                                if (target % 1 !== 0) {
+                                    counter.innerText = current.toFixed(2);
+                                } else {
+                                    counter.innerText = Math.floor(current);
+                                }
+                                if (progress < 1) {
+                                    requestAnimationFrame(update);
+                                } else {
+                                    counter.innerText = target;
+                                }
+                            }
+                            requestAnimationFrame(update);
+                        });
+                    }
+                });
+            }, { threshold: 0.5 });
+            if (statsSection) statsObserver.observe(statsSection);
+
+            // --- PROJECT FILTER ---
+            const filterBtns = document.querySelectorAll('#project-filters .project-tag');
+            const projectModules = document.querySelectorAll('.project-module');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filter = btn.getAttribute('data-filter');
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    projectModules.forEach(mod => {
+                        if (filter === 'all') {
+                            mod.classList.remove('hidden-by-filter');
+                        } else {
+                            const cats = mod.getAttribute('data-categories') || '';
+                            mod.classList.toggle('hidden-by-filter', !cats.split(/\s+/).includes(filter));
+                        }
+                    });
+                });
+            });
+
+            // --- AI CHAT ---
+            const toggleBtn = document.getElementById('ai-toggle-btn');
+            const terminal = document.getElementById('ai-terminal');
+            const closeBtn = document.getElementById('close-terminal');
+            const inputField = document.getElementById('user-input');
+            const logArea = document.getElementById('terminal-log');
+            let isOpen = false;
+            const apiKey = "";
+
+            function submitUserMessage(userMsg) {
+                if (!userMsg.trim()) return;
+                addMessage(userMsg, 'user');
+                inputField.disabled = true;
+                const typingId = addMessage('PROCESSING_QUERY...', 'typing');
+                const finish = (reply) => {
+                    removeMessage(typingId);
+                    addMessage(reply, 'ai');
+                    inputField.disabled = false;
+                    inputField.focus();
+                };
+                if (!apiKey) {
+                    setTimeout(() => finish(localAIResponse(userMsg)), 500);
+                } else {
+                    callGeminiAPI(userMsg).then(finish).catch(() => {
+                        finish(localAIResponse(userMsg));
+                    });
+                }
+            }
+
+            document.querySelectorAll('.prompt-chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    if (!terminal.classList.contains('open')) {
+                        isOpen = true;
+                        terminal.classList.add('open');
+                    }
+                    submitUserMessage(chip.getAttribute('data-prompt'));
+                });
+            });
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', () => {
+                    isOpen = !isOpen;
+                    terminal.classList.toggle('open', isOpen);
+                    if (isOpen) inputField.focus();
+                });
+                closeBtn.addEventListener('click', () => {
+                    isOpen = false;
+                    terminal.classList.remove('open');
+                });
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && terminal.classList.contains('open')) {
+                        isOpen = false;
+                        terminal.classList.remove('open');
+                    }
+                });
+                inputField.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && inputField.value.trim() !== '') {
+                        const userMsg = inputField.value.trim();
+                        inputField.value = '';
+                        submitUserMessage(userMsg);
+                    }
+                });
+            }
+
+            // --- LOCAL NEURAL CACHE ---
+            function localAIResponse(query) {
+                const q = query.toLowerCase();
+                if (q.match(/contact|email|phone|reach|hire|get in touch/))
+                    return "Reach Subham at subhamsaha2234@gmail.com or +91 74188 51972. Based in VIT Vellore and Howrah, Kolkata.";
+                if (q.match(/biped|robot|locomotion/))
+                    return "Subham built a 4-DOF Hybrid Biped Robot (Mar–Dec 2025) with walking + rolling mechanisms. ESP32 + IMU sensor fusion for dynamic balance correction. Eliminated gear systems → 30% energy saving. Real-time gait correction via trajectory planning. Tools: MATLAB, Simulink, ROS, Gazebo, Fusion 360, Ansys, Arduino IDE.";
+                if (q.match(/digital twin|ev simulation|simscape/))
+                    return "Since Aug 2024, Subham is building a Formula Student EV Digital Twin in MATLAB Simscape — covering BMS, electric powertrain, thermal systems, and vehicle dynamics. Used for energy consumption analysis and race strategy optimization.";
+                if (q.match(/spam|nlp|classifier|ml|machine learning/))
+                    return "In Dec 2023, Subham built a SPAM/HAM NLP classifier achieving 93% accuracy with near-zero false positives, using Python and scikit-learn for real-world text classification.";
+                if (q.match(/project/))
+                    return "6 projects: (1) 600V BMS — isoSPI, STM32, sub-5ms fault response (2) Hybrid Biped Robot — ESP32+IMU, 30% energy savings (3) Mixed-Signal DAQ — 120dB CMRR (4) AI RC Car — YOLO, 20+ FPS (5) EV Digital Twin — MATLAB Simscape (6) SPAM/HAM NLP — 93% accuracy.";
+                if (q.match(/schneider|hmi|plc|ecostruxure/))
+                    return "HMI Project Intern at Schneider Electric India, Bengaluru (May–Aug 2025). Built a dark-theme UI for EcoStruxure Operator Terminal Expert (EOTE) in C# and WPF to reduce operator visual fatigue in control rooms.";
+                if (q.match(/bahrain|marina|electromechanical|grounding/))
+                    return "Project Intern at Bahrain Electromechanical Services (Jun–Jul 2024) on the $525M Bahrain Marina Project. Designed grounding systems (<1 Ω), lightning protection, cable tray calculations, and reviewed IFC drawings for safety systems.";
+                if (q.match(/internship|intern/))
+                    return "2 internships:\n1. Schneider Electric India — HMI/PLC, C#/WPF UI (May–Aug 2025, Bengaluru)\n2. Bahrain Electromechanical Services — $525M Marina Project, electrical distribution (Jun–Jul 2024, Bahrain)";
+                if (q.match(/ojas|racing|tsal|formula student|fsae/))
+                    return "Outreach Lead & Electrical Engineer at Team Ojas Racing, VIT (May 2024–present). Architected decentralized CAN ECU nodes, 600V BMS with isoSPI, Master-Slave topology, and FMEA for EV racing safety compliance.";
+                if (q.match(/isoi|design head|poster/))
+                    return "Design Head at ISOI, VIT (Jun 2024–Jul 2025). Created 25+ posters for Riviera and Gravitas. Organized hackathons and mentored designers in Figma and Canva.";
+                if (q.match(/experience|work|leadership|role/))
+                    return "Experience: Schneider Electric HMI intern (2025), BEMCO Bahrain marina project intern (2024). Leadership: Outreach Lead & EE at Team Ojas Racing, Design Head at ISOI — VIT Vellore.";
+                if (q.match(/skill|tool|software|stack|program/))
+                    return "Programming: MATLAB, Python, Java, C/C++, C#, R\nDesign: KiCAD, Altium, EasyEDA, AutoCAD Electrical, Fusion 360, EcoStruxure OTE\nSimulation: Simscape, Simulink, OrCAD Pspice, NI Multisim, NI LabVIEW, ROS/Gazebo, Ansys\nProductivity: Canva, Figma, MS Office";
+                if (q.match(/education|cgpa|vit|degree|university|course/))
+                    return "B.Tech in Electrical & Electronics Engineering at VIT Vellore (Sep 2022–present), CGPA: 8.67/10. Coursework: Power Systems, Control Systems, Power Electronics, Embedded Systems, Circuit Theory, Analog & Digital Electronics, Microprocessors.";
+                if (q.match(/cert|certification|altium|siemens|coursera/))
+                    return "5 certifications:\n1. PCB Design with Altium Designer — Coursera (2025)\n2. Commercial Project Manager Job Simulation — Siemens (2025)\n3. Distributed Generation — Schneider Electric University (2025)\n4. AI Internship — Acmegrade (2024)\n5. Event Organizer, Screencraft Hackathon × Schneider/VIT (2025)";
+                if (q.match(/language|speak|bengali|hindi|german/))
+                    return "Subham speaks Bengali (native), Hindi (fluent), English (proficient), and German (basic).";
+                if (q.match(/hello|hi|hey|who are you|what can you do/))
+                    return "Hello! I'm Subham's portfolio assistant. Ask me about his projects, internships at Schneider Electric and Bahrain Electromechanical, Formula Student work at Team Ojas Racing, skills, certifications, or how to contact him.";
+                return "I didn't recognise that query. Try asking about 'Projects', 'Internships', 'Skills', 'Education', 'Ojas Racing', or 'Contact'.";
+            }
+
+            function addMessage(text, type) {
+                const div = document.createElement('div');
+                div.className = `msg-${type}`;
+                div.id = `msg-${Date.now()}`;
+                if (type === 'user') {
+                    div.textContent = `${text} <`;
+                } else if (type === 'ai') {
+                    div.innerHTML = `> ${text}`;
+                } else if (type === 'typing') {
+                    div.className = 'msg-typing';
+                    div.textContent = `> ${text}`;
+                } else {
+                    div.textContent = `> ${text}`;
+                }
+                logArea.appendChild(div);
+                logArea.scrollTop = logArea.scrollHeight;
+                return div.id;
+            }
+
+            function removeMessage(id) {
+                const el = document.getElementById(id);
+                if (el) el.remove();
+            }
+
+            async function callGeminiAPI(prompt) {
+                const contextData = `You are the AI assistant for Subham Saha, an Electrical and Electronics Engineer.
+                Background: B.Tech EEE at VIT Vellore, CGPA 8.67. Outreach Lead & Electrical Engineer at Team Ojas Racing.
+                Experience: 600V BMS (isoSPI, STM32), decentralized CAN ECU, Schneider EOTE dark UI (C#/WPF), BEMCO grounding design.
+                Projects: HV BMS, Hybrid Biped Robot, Mixed-Signal DAQ, AI RC Car (YOLO), EV Digital Twin (Simscape), SPAM/HAM NLP.
+                Tone: Professional, technical, engineering-focused. Concise.`;
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+                const payload = {
+                    contents: [{ parts: [{ text: prompt }] }],
+                    systemInstruction: { parts: [{ text: contextData }] }
+                };
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const data = await response.json();
+                return data.candidates?.[0]?.content?.parts?.[0]?.text || "NO_DATA_RECEIVED";
+            }
+        });
+    </script>
+</body>
+</html>
