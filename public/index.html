@@ -66,19 +66,19 @@
 
         :root {
             /* ── Surfaces (Claude dark warmth + GitHub depth) ── */
-            --bg-base:      #0a0a0a;   /* Claude --background dark */
+            --bg-base:      #121212;   /* Claude --background dark */
             --bg-surface:   #111113;   /* card level — slightly warmer than pure #0a */
             --bg-elevated:  #18181b;   /* Claude --muted dark, nav/overlay */
             --bg-hover:     #27272a;   /* Claude --input dark */
             --border:       #27272a;   /* Claude --border dark */
             --border-muted: #1a1a1d;
-            --border-active:#58a6ff;   /* VS Code selection blue — accent pop */
+            --border-active:#5898ff;   /* VS Code selection blue — accent pop */
 
             /* ── Text hierarchy ── */
             --text-primary: #ffffff;   /* pure white for headings */
             --text-body:    #e2e2e6;   /* bright body copy — clearly readable */
             --text-muted:   #b4b4bc;   /* labels, meta — noticeably lighter */
-            --text-faint:   #6b6b78;   /* coordinates, faint decorative markers */
+            --text-faint:   #9b9b9b;   /* coordinates, faint decorative markers */
 
             /* ── Accent — VS Code / Claude sidebar blue ── */
             --accent:       #58a6ff;
@@ -108,7 +108,7 @@
 
         /* ── NAV ── */
         .nav-blur {
-            background: rgba(13, 17, 23, 0.82);
+            background: rgba(13, 17, 23, 0.729);
             border-bottom: 1px solid var(--border);
             backdrop-filter: blur(14px);
         }
@@ -373,30 +373,54 @@
     <div class="fixed top-4 left-4 font-cad text-[10px] text-[#6b6b78] select-none pointer-events-none">+ X:000 Y:000</div>
     <div class="fixed bottom-4 left-4 font-cad text-[10px] text-[#6b6b78] select-none pointer-events-none">+ REF_MARKER</div>
 
+    <!-- ⬤ LIVE STATUS BAR -->
+    <div id="status-bar" class="w-full z-[60] relative" style="background:#0a0a0a;border-bottom:1px solid #1a1a1d;">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between py-1.5 gap-4 overflow-hidden">
+                <div class="flex items-center gap-3 min-w-0">
+                    <span class="flex-shrink-0 flex items-center gap-1.5 font-mono text-[10px] text-[#3fb950] font-bold tracking-widest uppercase">
+                        <span class="w-1.5 h-1.5 bg-[#3fb950] rounded-full animate-pulse inline-block"></span> LIVE
+                    </span>
+                    <span class="text-[#27272a] font-mono text-[10px] select-none">│</span>
+                    <span class="font-mono text-[10px] text-[#6b6b78] tracking-wide truncate">
+                        <span class="text-[#484f58]">git commit —</span>
+                        <span id="status-text" class="text-[#b4b4bc] ml-1">isoSPI fault-tolerance testing, 600V BMS Rev3</span>
+                    </span>
+                </div>
+                <div class="flex-shrink-0 flex items-center gap-4 font-mono text-[10px] text-[#484f58]">
+                    <span class="hidden sm:inline tracking-wider">VIT VELLORE</span>
+                    <span id="live-time" class="text-[#3b3b45] tabular-nums"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 nav-blur">
+    <nav class="sticky top-0 w-full z-50 nav-blur">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0 font-mono font-bold text-xl text-primary tracking-tighter border-2 border-[#30363d] px-2 py-1">
-                    SS_PORTFOLIO.sch
-                </div>
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8 font-mono text-xs">
+                    <div class="flex items-baseline space-x-8 font-mono text-xs">
                         <a href="#about"          class="nav-link transition px-3 py-4 uppercase tracking-wide border-b-2 border-transparent">.About</a>
                         <a href="#experience"     class="nav-link transition px-3 py-4 uppercase tracking-wide border-b-2 border-transparent">.Experience</a>
                         <a href="#projects"       class="nav-link transition px-3 py-4 uppercase tracking-wide border-b-2 border-transparent">.Projects</a>
                         <a href="#skills"         class="nav-link transition px-3 py-4 uppercase tracking-wide border-b-2 border-transparent">.Skills</a>
+                        <a href="#isoi-design"    class="nav-link transition px-3 py-4 uppercase tracking-wide border-b-2 border-transparent">.Design</a>
                         <a href="#certifications" class="nav-link transition px-3 py-4 uppercase tracking-wide border-b-2 border-transparent">.Credentials</a>
                         <a href="#contact"        class="nav-link border border-[#30363d] text-[#e2e2e6] hover:bg-[#21262d] hover:text-white px-4 py-2 text-xs font-bold transition uppercase">.Execute_Contact</a>
                     </div>
                 </div>
-                <button id="mobile-menu-btn" type="button" class="md:hidden font-mono text-xs border-2 border-[#30363d] px-2 py-1 text-[#e2e2e6]" aria-expanded="false" aria-controls="mobile-menu">MENU</button>
+                <div class="flex-shrink-0 font-mono font-bold text-sm text-primary tracking-tighter border border-[#30363d] px-2 py-1 ml-auto md:ml-6">
+                    SS_PORTFOLIO.sch
+                </div>
+                <button id="mobile-menu-btn" type="button" class="md:hidden font-mono text-xs border-2 border-[#30363d] px-2 py-1 text-[#e2e2e6] ml-3" aria-expanded="false" aria-controls="mobile-menu">MENU</button>
             </div>
             <div id="mobile-menu" class="md:hidden font-mono text-xs">
                 <a href="#about"          class="nav-link block px-4 py-3">.About</a>
                 <a href="#experience"     class="nav-link block px-4 py-3">.Experience</a>
                 <a href="#projects"       class="nav-link block px-4 py-3">.Projects</a>
                 <a href="#skills"         class="nav-link block px-4 py-3">.Skills</a>
+                <a href="#isoi-design"    class="nav-link block px-4 py-3">.Design</a>
                 <a href="#certifications" class="nav-link block px-4 py-3">.Credentials</a>
                 <a href="#contact"        class="nav-link border border-[#30363d] text-[#e2e2e6] hover:bg-[#21262d] hover:text-white px-4 py-2 text-xs font-bold transition uppercase block">.Execute_Contact</a>
             </div>
@@ -445,6 +469,10 @@
                     </a>
                     <a href="assets/docs/electronics_resume.pdf" target="_blank" class="bg-transparent text-primary border border-[#30363d] px-6 py-3.5 font-mono text-xs font-bold hover:bg-[#21262d] hover:text-[#e6edf3] hover:border-[#30363d] transition flex items-center tracking-wider">
                         <i class="fas fa-file-pdf mr-3 text-[#b4b4bc]"></i> Pull_Datasheet (CV)
+                    </a>
+                    <a href="YOUR_GDRIVE_LINK" target="_blank" rel="noopener" class="bg-transparent text-primary border border-[#30363d] px-6 py-3.5 font-mono text-xs font-bold hover:bg-[#21262d] hover:text-[#e6edf3] hover:border-[#30363d] transition flex items-center tracking-wider group">
+                        <i class="fas fa-images mr-3 text-[#b4b4bc] group-hover:text-[#e6edf3] transition"></i> View_Poster_Archive
+                        <span class="ml-2 text-[10px] opacity-60 group-hover:opacity-100 transition">↗</span>
                     </a>
                     <div class="flex items-center space-x-6 text-xl text-[#6b6b78] sm:ml-4">
                         <a href="https://github.com/Subham2234/Portfolio"                    class="hover:text-[#b4b4bc] transition"><i class="fab fa-github"></i></a>
@@ -685,7 +713,7 @@
                 </div>
 
                 <!-- Item 4: ISOI -->
-                <div class="ml-10 relative">
+                <div class="ml-10 relative" id="isoi-design">
                     <div class="absolute -left-[47px] top-6 circuit-node z-10"></div>
                     <div class="absolute -left-[41px] top-[30px] w-8 h-[2px] timeline-connector"></div>
                     <div class="tech-card p-8 relative">
@@ -724,6 +752,56 @@
                                 <span><strong class="text-primary">Team Mentorship:</strong> Led and mentored a team of junior designers in Canva and Figma, standardizing design workflows and maintaining a consistent visual identity across all chapter communications.</span>
                             </li>
                         </ul>
+
+                        <!-- Poster Gallery + Archive Block -->
+                        <div class="mt-6 border border-dashed border-[#30363d] relative group/archive hover:border-[#58a6ff] transition-colors duration-300">
+                            <div class="absolute -top-[9px] left-4 px-2 bg-[#0f1117] font-mono text-[9px] tracking-[0.2em] text-[#6b6b78] uppercase">// DESIGN_OUTPUT_ARCHIVE</div>
+
+                            <!-- 3 poster thumbnails + +20 tile -->
+                            <div class="grid grid-cols-4 gap-1.5 p-4 pb-3">
+                                <a href="YOUR_GDRIVE_LINK" target="_blank" rel="noopener" class="relative overflow-hidden border border-[#27272a] hover:border-[#58a6ff] transition-colors duration-200 group/thumb aspect-[3/4]" title="Poster 1">
+                                    <div class="w-full h-full bg-[#1a1a1d] flex items-center justify-center">
+                                        <i class="fas fa-image text-[#30363d] text-lg group-hover/thumb:text-[#484f58] transition-colors"></i>
+                                    </div>
+                                    <div class="absolute inset-0 bg-[#58a6ff]/0 group-hover/thumb:bg-[#58a6ff]/5 transition-all duration-200"></div>
+                                </a>
+                                <a href="YOUR_GDRIVE_LINK" target="_blank" rel="noopener" class="relative overflow-hidden border border-[#27272a] hover:border-[#58a6ff] transition-colors duration-200 group/thumb aspect-[3/4]" title="Poster 2">
+                                    <div class="w-full h-full bg-[#1a1a1d] flex items-center justify-center">
+                                        <i class="fas fa-image text-[#30363d] text-lg group-hover/thumb:text-[#484f58] transition-colors"></i>
+                                    </div>
+                                    <div class="absolute inset-0 bg-[#58a6ff]/0 group-hover/thumb:bg-[#58a6ff]/5 transition-all duration-200"></div>
+                                </a>
+                                <a href="YOUR_GDRIVE_LINK" target="_blank" rel="noopener" class="relative overflow-hidden border border-[#27272a] hover:border-[#58a6ff] transition-colors duration-200 group/thumb aspect-[3/4]" title="Poster 3">
+                                    <div class="w-full h-full bg-[#1a1a1d] flex items-center justify-center">
+                                        <i class="fas fa-image text-[#30363d] text-lg group-hover/thumb:text-[#484f58] transition-colors"></i>
+                                    </div>
+                                    <div class="absolute inset-0 bg-[#58a6ff]/0 group-hover/thumb:bg-[#58a6ff]/5 transition-all duration-200"></div>
+                                </a>
+                                <!-- +20 more tile -->
+                                <a href="YOUR_GDRIVE_LINK" target="_blank" rel="noopener" class="relative overflow-hidden border border-[#27272a] hover:border-[#58a6ff] transition-colors duration-200 group/thumb aspect-[3/4] bg-[#1a1a1d] flex items-center justify-center" title="View all posters">
+                                    <div class="text-center">
+                                        <div class="font-mono text-sm font-bold text-[#484f58] group-hover/thumb:text-[#58a6ff] transition-colors">+20</div>
+                                        <div class="font-mono text-[8px] text-[#30363d] group-hover/thumb:text-[#484f58] transition-colors mt-0.5">MORE</div>
+                                    </div>
+                                    <div class="absolute inset-0 bg-[#58a6ff]/0 group-hover/thumb:bg-[#58a6ff]/5 transition-all duration-200"></div>
+                                </a>
+                            </div>
+                            <div class="px-4 pb-1 font-mono text-[9px] text-[#484f58] tracking-wider">// Replace placeholders with: &lt;img src="poster.jpg" class="w-full h-full object-cover"&gt;</div>
+
+                            <!-- Archive CTA row -->
+                            <a href="YOUR_GDRIVE_LINK" target="_blank" rel="noopener"
+                               class="flex items-center gap-4 px-4 py-3 border-t border-[#1a1a1d] text-[#b4b4bc] hover:text-[#e2e2e6] hover:bg-[#111113] transition-all duration-200 group/cta">
+                                <div class="flex-shrink-0 w-8 h-8 border border-[#30363d] group-hover/cta:border-[#58a6ff] flex items-center justify-center transition-colors duration-200">
+                                    <i class="fas fa-images text-[#484f58] group-hover/cta:text-[#58a6ff] text-xs transition-colors duration-200"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="font-mono text-sm font-bold text-[#e2e2e6] group-hover/cta:text-white tracking-wide transition-colors">View_Full_Poster_Archive</div>
+                                    <div class="font-mono text-[10px] text-[#6b6b78] mt-0.5 tracking-wider">25+ creatives &mdash; Riviera &nbsp;&bull;&nbsp; Gravitas &nbsp;&bull;&nbsp; ISOI</div>
+                                </div>
+                                <div class="flex-shrink-0 font-mono text-xs text-[#484f58] group-hover/cta:text-[#58a6ff] group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 transition-all duration-200">↗</div>
+                            </a>
+                        </div>
+
                     </div>
                 </div>
 
@@ -986,13 +1064,27 @@
                         <i class="fas fa-code text-[#b4b4bc]"></i> Programming
                     </h3>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-pill px-3 py-2 rounded">MATLAB</span>
-                        <span class="skill-pill px-3 py-2 rounded">Python</span>
-                        <span class="skill-pill px-3 py-2 rounded">Java</span>
-                        <span class="skill-pill px-3 py-2 rounded">C / C++</span>
-                        <span class="skill-pill px-3 py-2 rounded">C#</span>
-                        <span class="skill-pill px-3 py-2 rounded">Verilog</span>
-                        <span class="skill-pill px-3 py-2 rounded">Embedded C</span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/matlab/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="MATLAB" onerror="this.style.display='none'"> MATLAB
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/python/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="Python" onerror="this.style.display='none'"> Python
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/java/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="Java" onerror="this.style.display='none'"> Java
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/cplusplus/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="C++" onerror="this.style.display='none'"> C / C++
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/csharp/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="C#" onerror="this.style.display='none'"> C#
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <i class="fas fa-microchip text-[#58a6ff] opacity-70 text-xs"></i> Verilog
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <i class="fas fa-bolt text-[#58a6ff] opacity-70 text-xs"></i> Embedded C
+                        </span>
                     </div>
                 </div>
 
@@ -1006,12 +1098,24 @@
                         <i class="fas fa-microchip text-[#b4b4bc]"></i> Design Software
                     </h3>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-pill px-3 py-2 rounded">KiCAD</span>
-                        <span class="skill-pill px-3 py-2 rounded">Altium Designer</span>
-                        <span class="skill-pill px-3 py-2 rounded">EasyEDA</span>
-                        <span class="skill-pill px-3 py-2 rounded">AutoCAD Electrical</span>
-                        <span class="skill-pill px-3 py-2 rounded">Fusion 360</span>
-                        <span class="skill-pill px-3 py-2 rounded">EcoStruxure OTE</span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/kicad/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="KiCad" onerror="this.style.display='none'"> KiCAD
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <i class="fas fa-layer-group text-[#58a6ff] opacity-70 text-xs"></i> Altium Designer
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <i class="fas fa-draw-polygon text-[#58a6ff] opacity-70 text-xs"></i> EasyEDA
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/autocad/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="AutoCAD" onerror="this.style.display='none'"> AutoCAD Electrical
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/autodesk/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="Fusion 360" onerror="this.style.display='none'"> Fusion 360
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <i class="fas fa-industry text-[#58a6ff] opacity-70 text-xs"></i> EcoStruxure OTE
+                        </span>
                     </div>
                 </div>
 
@@ -1025,14 +1129,30 @@
                         <i class="fas fa-wave-square text-[#b4b4bc]"></i> Simulation
                     </h3>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-pill px-3 py-2 rounded">MATLAB Simscape</span>
-                        <span class="skill-pill px-3 py-2 rounded">Simulink</span>
-                        <span class="skill-pill px-3 py-2 rounded">OrCAD Pspice</span>
-                        <span class="skill-pill px-3 py-2 rounded">NI Multisim</span>
-                        <span class="skill-pill px-3 py-2 rounded">NI LabVIEW</span>
-                        <span class="skill-pill px-3 py-2 rounded">ROS / Gazebo</span>
-                        <span class="skill-pill px-3 py-2 rounded">Ansys</span>
-                        <span class="skill-pill px-3 py-2 rounded">LTspice</span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/matlab/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="MATLAB" onerror="this.style.display='none'"> MATLAB Simscape
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/matlab/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="Simulink" onerror="this.style.display='none'"> Simulink
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <i class="fas fa-wave-square text-[#58a6ff] opacity-70 text-xs"></i> OrCAD Pspice
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <i class="fas fa-flask text-[#58a6ff] opacity-70 text-xs"></i> NI Multisim
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <i class="fas fa-chart-line text-[#58a6ff] opacity-70 text-xs"></i> NI LabVIEW
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/ros/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="ROS" onerror="this.style.display='none'"> ROS / Gazebo
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <i class="fas fa-cube text-[#58a6ff] opacity-70 text-xs"></i> Ansys
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <i class="fas fa-project-diagram text-[#58a6ff] opacity-70 text-xs"></i> LTspice
+                        </span>
                     </div>
                 </div>
 
@@ -1046,12 +1166,24 @@
                         <i class="fas fa-palette text-[#b4b4bc]"></i> Productivity & Design
                     </h3>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-pill px-3 py-2 rounded">Canva</span>
-                        <span class="skill-pill px-3 py-2 rounded">Figma</span>
-                        <span class="skill-pill px-3 py-2 rounded">MS Word</span>
-                        <span class="skill-pill px-3 py-2 rounded">Excel</span>
-                        <span class="skill-pill px-3 py-2 rounded">PowerPoint</span>
-                        <span class="skill-pill px-3 py-2 rounded">Outlook</span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/canva/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="Canva" onerror="this.style.display='none'"> Canva
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/figma/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="Figma" onerror="this.style.display='none'"> Figma
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/microsoftword/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="Word" onerror="this.style.display='none'"> MS Word
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/microsoftexcel/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="Excel" onerror="this.style.display='none'"> Excel
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/microsoftpowerpoint/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="PowerPoint" onerror="this.style.display='none'"> PowerPoint
+                        </span>
+                        <span class="skill-pill px-3 py-2 rounded flex items-center gap-2">
+                            <img src="https://cdn.simpleicons.org/microsoftoutlook/58a6ff" class="w-3.5 h-3.5 opacity-70" alt="Outlook" onerror="this.style.display='none'"> Outlook
+                        </span>
                     </div>
                 </div>
             </div>
@@ -1171,26 +1303,73 @@
     <!-- ═══════════════════════════════════════════
          FOOTER / CONTACT
     ═══════════════════════════════════════════ -->
-    <footer id="contact" class="footer-bg py-12 mt-12 pb-24">
+    <footer id="contact" class="footer-bg py-16 mt-12 pb-24">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <div class="font-mono">
-                    <h2 class="text-xl font-bold text-primary mb-6 uppercase tracking-wider">// Collaboration_Request</h2>
-                    <div class="space-y-4 text-sm">
-                        <a href="mailto:subhamsaha2234@gmail.com" class="flex items-center footer-link transition group p-2 hover:border-[#30363d] hover:text-[#b4b4bc]">
-                            <i class="fas fa-envelope w-6 text-center mr-3 text-[#b4b4bc]"></i> subhamsaha2234@gmail.com
-                        </a>
-                        <a href="tel:+917418851972" class="flex items-center footer-link transition group p-2 hover:border-[#30363d] hover:text-[#b4b4bc]">
-                            <i class="fas fa-phone w-6 text-center mr-3 text-[#b4b4bc]"></i> +91 74188 51972
-                        </a>
-                        <div class="flex items-center footer-link p-2 text-[#b4b4bc]">
-                            <i class="fas fa-map-marker-alt w-6 text-center mr-3 text-[#b4b4bc]"></i> VIT Vellore // Howrah, Kolkata
+
+            <!-- ROW 1: Centred heading -->
+            <div class="text-center mb-10">
+                <h2 class="text-2xl font-bold text-primary font-mono uppercase tracking-widest section-heading-border pb-4 inline-block">
+                    <span class="text-[#6b6b78] mr-2">//</span> Collaboration_Request
+                </h2>
+                <p class="text-[#6b6b78] font-mono text-xs mt-3 tracking-wide">Open to internships · MS referrals · Technical collaborations</p>
+            </div>
+
+            <!-- ROW 2: Centred form -->
+            <div class="max-w-2xl mx-auto mb-12">
+                <div class="border border-dashed border-[#30363d] relative hover:border-[#484f58] transition-colors duration-300">
+                    <div class="absolute -top-[9px] left-4 px-2 bg-[#0d1117] font-mono text-[9px] tracking-[0.2em] text-[#6b6b78] uppercase">// TRANSMIT_MESSAGE</div>
+                    <div class="p-6 space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[9px] tracking-widest text-[#484f58] mb-1.5 uppercase">Name</label>
+                                <input id="cf-name" type="text" placeholder="Your name"
+                                    class="w-full bg-[#0d1117] border border-[#21262d] focus:border-[#58a6ff] outline-none text-[#e2e2e6] font-mono text-xs px-3 py-2.5 transition-colors placeholder-[#2d333b]">
+                            </div>
+                            <div>
+                                <label class="block text-[9px] tracking-widest text-[#484f58] mb-1.5 uppercase">Email</label>
+                                <input id="cf-email" type="email" placeholder="your@email.com"
+                                    class="w-full bg-[#0d1117] border border-[#21262d] focus:border-[#58a6ff] outline-none text-[#e2e2e6] font-mono text-xs px-3 py-2.5 transition-colors placeholder-[#2d333b]">
+                            </div>
                         </div>
+                        <div>
+                            <label class="block text-[9px] tracking-widest text-[#484f58] mb-1.5 uppercase">Subject</label>
+                            <input id="cf-subject" type="text" placeholder="Internship / MS referral / Collab..."
+                                class="w-full bg-[#0d1117] border border-[#21262d] focus:border-[#58a6ff] outline-none text-[#e2e2e6] font-mono text-xs px-3 py-2.5 transition-colors placeholder-[#2d333b]">
+                        </div>
+                        <div>
+                            <label class="block text-[9px] tracking-widest text-[#484f58] mb-1.5 uppercase">Message</label>
+                            <textarea id="cf-message" rows="4" placeholder="Describe your request..."
+                                class="w-full bg-[#0d1117] border border-[#21262d] focus:border-[#58a6ff] outline-none text-[#e2e2e6] font-mono text-xs px-3 py-2.5 transition-colors placeholder-[#2d333b] resize-none"></textarea>
+                        </div>
+                        <button id="cf-send" type="button"
+                            class="w-full bg-transparent border border-[#30363d] hover:border-[#58a6ff] hover:bg-[#161b22] text-[#b4b4bc] hover:text-white font-mono text-xs py-3 transition-all flex items-center justify-center gap-2 group tracking-widest">
+                            <i class="fas fa-paper-plane text-[#484f58] group-hover:text-[#58a6ff] transition-colors text-[10px]"></i>
+                            <span id="cf-btn-text">TRANSMIT_MESSAGE</span>
+                        </button>
+                        <p id="cf-status" class="text-[10px] font-mono text-center hidden"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 3: contact info left | title block right -->
+            <div class="border-t border-[#21262d] pt-8 grid md:grid-cols-2 gap-8 items-end">
+
+                <!-- Contact info -->
+                <div class="font-mono space-y-3 text-sm">
+                    <p class="text-[9px] tracking-[0.2em] text-[#484f58] uppercase mb-4">// Direct_Channel</p>
+                    <a href="mailto:subhamsaha2234@gmail.com" class="flex items-center footer-link transition group p-2 hover:border-[#30363d] hover:text-[#b4b4bc]">
+                        <i class="fas fa-envelope w-6 text-center mr-3 text-[#b4b4bc]"></i> subhamsaha2234@gmail.com
+                    </a>
+                    <a href="tel:+917418851972" class="flex items-center footer-link transition group p-2 hover:border-[#30363d] hover:text-[#b4b4bc]">
+                        <i class="fas fa-phone w-6 text-center mr-3 text-[#b4b4bc]"></i> +91 74188 51972
+                    </a>
+                    <div class="flex items-center footer-link p-2 text-[#b4b4bc]">
+                        <i class="fas fa-map-marker-alt w-6 text-center mr-3 text-[#b4b4bc]"></i> VIT Vellore // Howrah, Kolkata
                     </div>
                 </div>
 
-                <!-- Title Block Table -->
-                <div class="flex items-end justify-end">
+                <!-- Title block -->
+                <div class="flex justify-end">
                     <table class="w-full md:w-auto title-block text-xs font-mono shadow-lg">
                         <tr>
                             <td colspan="2" class="font-bold bg-slate-100">PROJECT TITLE</td>
@@ -1218,7 +1397,8 @@
                     </table>
                 </div>
             </div>
-            <p class="text-[#6b6b78] text-xs text-center font-mono">© 2026 Subham Saha. Designed with KiCad aesthetics.</p>
+
+            <p class="text-[#6b6b78] text-xs text-center font-mono mt-10">© 2026 Subham Saha. Designed with KiCad aesthetics.</p>
         </div>
     </footer>
 
@@ -1516,6 +1696,92 @@
                 return data.candidates?.[0]?.content?.parts?.[0]?.text || "NO_DATA_RECEIVED";
             }
         });
+    </script>
+
+    <!-- Live clock for status bar -->
+    <script>
+        (function() {
+            const el = document.getElementById('live-time');
+            if (!el) return;
+            function tick() {
+                const now = new Date();
+                el.textContent = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            }
+            tick();
+            setInterval(tick, 1000);
+        })();
+    </script>
+
+    <!-- Contact form handler — swap YOUR_FORMSPREE_ID with your endpoint from formspree.io -->
+    <script>
+        (function() {
+            const btn = document.getElementById('cf-send');
+            const status = document.getElementById('cf-status');
+            const btnText = document.getElementById('cf-btn-text');
+            if (!btn) return;
+
+            const FORMSPREE_ENDPOINT = 'YOUR_FORMSPREE_ENDPOINT'; // e.g. https://formspree.io/f/xyzabcde
+
+            btn.addEventListener('click', async function() {
+                const name    = (document.getElementById('cf-name').value || '').trim();
+                const email   = (document.getElementById('cf-email').value || '').trim();
+                const subject = (document.getElementById('cf-subject').value || '').trim();
+                const message = (document.getElementById('cf-message').value || '').trim();
+
+                if (!name || !email || !message) {
+                    status.textContent = '// ERROR: Name, Email and Message are required.';
+                    status.className = 'text-[10px] font-mono text-center text-[#f85149]';
+                    status.classList.remove('hidden');
+                    return;
+                }
+
+                // If Formspree is configured, POST to it; otherwise fall back to mailto
+                if (FORMSPREE_ENDPOINT && !FORMSPREE_ENDPOINT.includes('YOUR_FORMSPREE')) {
+                    btnText.textContent = 'TRANSMITTING...';
+                    btn.disabled = true;
+                    try {
+                        const res = await fetch(FORMSPREE_ENDPOINT, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                            body: JSON.stringify({ name, email, subject: subject || 'Portfolio Inquiry', message })
+                        });
+                        if (res.ok) {
+                            btnText.textContent = 'TRANSMITTED ✓';
+                            btn.classList.add('border-[#3fb950]', 'text-[#3fb950]');
+                            status.textContent = '// SUCCESS — message received. You will hear back soon.';
+                            status.className = 'text-[10px] font-mono text-center text-[#3fb950]';
+                            status.classList.remove('hidden');
+                            ['cf-name','cf-email','cf-subject','cf-message'].forEach(id => document.getElementById(id).value = '');
+                        } else {
+                            throw new Error('Server error');
+                        }
+                    } catch {
+                        btnText.textContent = 'TRANSMIT_MESSAGE';
+                        btn.disabled = false;
+                        status.textContent = '// ERROR — submission failed. Try emailing directly.';
+                        status.className = 'text-[10px] font-mono text-center text-[#f85149]';
+                        status.classList.remove('hidden');
+                        return;
+                    }
+                } else {
+                    // Fallback: open mailto
+                    const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+                    window.location.href = `mailto:subhamsaha2234@gmail.com?subject=${encodeURIComponent(subject || 'Portfolio Inquiry')}&body=${encodeURIComponent(body)}`;
+                    btnText.textContent = 'TRANSMITTED ✓';
+                    btn.classList.add('border-[#3fb950]', 'text-[#3fb950]');
+                    status.textContent = '// Your mail client will open with the message pre-filled.';
+                    status.className = 'text-[10px] font-mono text-center text-[#3fb950]';
+                    status.classList.remove('hidden');
+                }
+
+                setTimeout(() => {
+                    btnText.textContent = 'TRANSMIT_MESSAGE';
+                    btn.disabled = false;
+                    btn.classList.remove('border-[#3fb950]', 'text-[#3fb950]');
+                    status.classList.add('hidden');
+                }, 5000);
+            });
+        })();
     </script>
 </body>
 </html>
